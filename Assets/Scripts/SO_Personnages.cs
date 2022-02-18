@@ -14,5 +14,6 @@ public class SO_Personnages : ScriptableObject
     public int attMag;
     public int defPhys;
     public int defMag;
-    
+
+    public EnumCapacites.enumCapacite capacite;
 }
