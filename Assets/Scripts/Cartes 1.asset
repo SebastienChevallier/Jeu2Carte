@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33d50fddf441674d938d2bfdfb9b9af, type: 3}
+  m_Name: Cartes 1
+  m_EditorClassIdentifier: 
+  name: 
+  price: 0
+  type: 
+  effet1: 1
+  effet2: 3
+  valeur1: 20
+  valeur2: 40
+  duree1: 50
+  duree2: 50
+  rarete: 80
