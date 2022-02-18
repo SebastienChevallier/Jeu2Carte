@@ -8,6 +8,7 @@ public class _PersonnagesManager : MonoBehaviour
    [Header("Propriet� du personnage : ")]
 	public string _name;
 	
+    public int PV;
     public int attPhys;
 	public int attMag;
     public int defPhys;
@@ -34,12 +35,12 @@ public class _PersonnagesManager : MonoBehaviour
 		CreateCharacter(persoRef);
 
 		scriptCapacites.DoSkill(capacite, valeur1, valeur2, duree);
-		scriptCapacites.DoSkill(capacite, valeur1, valeur2, duree);
     }
 
 	public void CreateCharacter(SO_Personnages personnage)
     {
 		_name = personnage.name;
+        PV = personnage.PV;
         attPhys = personnage.attPhys;
         attMag = personnage.attMag;
         defPhys = personnage.defPhys;
