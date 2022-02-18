@@ -39,7 +39,7 @@ public class _CartesManager : MonoBehaviour
 
 	public void CreateCard(SO_Cartes carte)
     {
-		_name = carte.name;
+		_name = carte._name;
 		price = carte.price;
 		type = carte.type;
 		effet1 = carte.effet1;
@@ -51,4 +51,6 @@ public class _CartesManager : MonoBehaviour
 		duree2 = carte.duree2;
 		rarete = carte.rarete;
     }
+
+
 }
