@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33d50fddf441674d938d2bfdfb9b9af, type: 3}
   m_Name: Cartes_BouleDeFeu
   m_EditorClassIdentifier: 
-  name: Boule de feu
+
+  _name: Boule de feu
   price: 10
-  type: Sort
+  type: Sorts
   effet1: 0
   effet2: 2
-  valeur1: 50
-  valeur2: 70
+  valeur1: 10
+  valeur2: 10
   duree1: 1
   duree2: 3
-  rarete: 2
+  rarete: 3
+  classe: Mage
+
