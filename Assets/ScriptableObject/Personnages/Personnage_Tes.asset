@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
   m_Name: Personnage_Tes
   m_EditorClassIdentifier: 
-  name: 
-  classe: 
-  PV: 0
-  attPhys: 0
-  attMag: 0
-  defPhys: 0
-  defMag: 0
+  name: Tes
+  classe: Magicien
+  PV: 150
+  attPhys: 20
+  attMag: 260
+  defPhys: 40
+  defMag: 100

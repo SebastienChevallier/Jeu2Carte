@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using TMPro;
 
 public class _CartesManager : MonoBehaviour
@@ -45,12 +46,12 @@ public class _CartesManager : MonoBehaviour
 	public int duree2;
 	[HideInInspector]
 
-
-
 	// Start is called before the first frame update
 	void Start()
     {
+
 		scriptEffet = GameObject.Find("EffetsManager").GetComponent<EnumEffets>();
+
 		CreateCard(carteRef);
 
 		scriptEffet.DoEffect(effet1, valeur1, duree1, rarete, cible);
@@ -59,12 +60,15 @@ public class _CartesManager : MonoBehaviour
 
 	public void CreateCard(SO_Cartes carte)
     {
+
 		_name = carte._name;
+
 		price = carte.price;
 		type = carte.type;
 		effet1 = carte.effet1;
 		effet2= carte.effet2;
 		classe = carte.classe;
+
 		
 		valeur1 = carte.valeur1;
 		valeur2 = carte.valeur2;
@@ -79,6 +83,5 @@ public class _CartesManager : MonoBehaviour
 		t_Effet2.text = effet2.ToString() + " : inflige " + valeur2 + " pts de degats sur " + duree2 + " tours.";
 		t_Classe.text = classe;
     }
-
-
+   
 }
