@@ -38,6 +38,7 @@ public class EnumEffets : MonoBehaviour
     {
         Debug.Log("Attaque : " + Val1 + " " + Val2 + " " + duree1 + " " + duree2 + " " + rarete);
     }
+
     public void Defense(int Val1, int Val2, int duree1, int duree2, int rarete)
     {
         Debug.Log("Defense " + Val1 + " " + Val2 + " " + duree1 + " " + duree2 + " " + rarete);
@@ -47,6 +48,7 @@ public class EnumEffets : MonoBehaviour
     {
         Debug.Log("Brule " + Val1 + " " + Val2 + " " + duree1 + " " + duree2 + " " + rarete);
     }
+
     public void Poison(int Val1, int Val2, int duree1, int duree2, int rarete)
     {
         Debug.Log("Poison " + Val1 + " " + Val2 + " " + duree1 + " " + duree2 + " " + rarete);

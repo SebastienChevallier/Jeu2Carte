@@ -26,7 +26,7 @@ public class _CartesManager : MonoBehaviour
 
 	[Header("Scripts Refs")]
 	public SO_Cartes carteRef;
-	public EnumEffets scriptEffet;
+	private EnumEffets scriptEffet;
 	public GameObject cible;
 
 	[HideInInspector]
