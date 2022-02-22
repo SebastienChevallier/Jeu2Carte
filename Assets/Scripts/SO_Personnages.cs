@@ -5,11 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Personnage", menuName = "ScriptableObjects/Personnage", order = 1)]
 public class SO_Personnages : ScriptableObject
 {
-    public string name;
+    public string _name;
 
     public string classe;
 
     public int PV;
+    public int Mana;
     public int attPhys;
     public int attMag;
     public int defPhys;

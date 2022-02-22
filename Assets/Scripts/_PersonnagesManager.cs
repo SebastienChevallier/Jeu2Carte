@@ -9,6 +9,7 @@ public class _PersonnagesManager : MonoBehaviour
 	public string _name;
 	
     public int PV;
+    public int Mana;
     public int attPhys;
 	public int attMag;
     public int defPhys;
@@ -24,7 +25,7 @@ public class _PersonnagesManager : MonoBehaviour
     public int valeur2;
     public int duree;
 
-	
+    public 
 
 	
 
@@ -34,17 +35,27 @@ public class _PersonnagesManager : MonoBehaviour
 		scriptCapacites = GameObject.Find("GAMEMANAGER").GetComponent<EnumCapacites>();
 		CreateCharacter(persoRef);
 
-		scriptCapacites.DoSkill(capacite, valeur1, valeur2, duree);
+		//scriptCapacites.DoSkill(capacite, valeur1, valeur2, duree);
+
+        //AttackBar
+
+
     }
 
 	public void CreateCharacter(SO_Personnages personnage)
     {
-		_name = personnage.name;
+		_name = personnage._name;
         PV = personnage.PV;
+        Mana = personnage.Mana;
         attPhys = personnage.attPhys;
         attMag = personnage.attMag;
         defPhys = personnage.defPhys;
         defMag = personnage.defMag;
         capacite = personnage.capacite;	
     } 
+
+    public void AttackBar() 
+    {
+
+    }
 }
