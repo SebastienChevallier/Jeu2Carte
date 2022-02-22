@@ -27,20 +27,24 @@ public class Cartes_Gestion : MonoBehaviour
 
     void LoadHand()
     {
+        float distance = Vector3.Distance(GameObject.Find("Min").transform.position, GameObject.Find("Max").transform.position);
+        float distIntercarte = distance / (cartes.Count +1);
+        distance = distIntercarte;
+
         foreach (GameObject card in GO_Cartes)
         {
             Destroy(card);
         }
 
         foreach (SO_Cartes card in cartes)
-        {   
-
-            var prefCartes = Instantiate(prefab_Cartes, container.transform.position + new Vector3(padding, 0, 0), new Quaternion(0,0,0,0), container.transform);
+        {
             
-            prefCartes.GetComponent<_CartesManager>().carteRef = card;
-            padding += 5f / cartes.Count;
+            var prefCartes = Instantiate(prefab_Cartes, GameObject.Find("Min").transform.position + new Vector3(distance, 0, 0), new Quaternion(0,0,0,0), container.transform);
+            prefCartes.transform.localRotation = Quaternion.Euler(0, 5, 0);
+            distance += distIntercarte;
+            prefCartes.GetComponent<_CartesManager>().carteRef = card;            
             GO_Cartes.Add(prefCartes);
         }
-        padding = 0;
+        
     }
 }

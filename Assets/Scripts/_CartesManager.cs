@@ -24,6 +24,8 @@ public class _CartesManager : MonoBehaviour
 	public TextMeshPro t_Effet2;
 	public TextMeshPro t_Classe;
 
+	public LayerMask layer;
+
 	[Header("Scripts Refs")]
 	public SO_Cartes carteRef;
 	private EnumEffets scriptEffet;
@@ -55,7 +57,8 @@ public class _CartesManager : MonoBehaviour
 
 		scriptEffet.DoEffect(effet1, valeur1, duree1, rarete, cible);
 		scriptEffet.DoEffect(effet2, valeur2, duree2, rarete, cible);
-    }
+		savePos = transform.position;
+	}
 
 	public void CreateCard(SO_Cartes carte)
     {
@@ -79,6 +82,58 @@ public class _CartesManager : MonoBehaviour
 		t_Effet2.text = effet2.ToString() + " : inflige " + valeur2 + " pts de degats sur " + duree2 + " tours.";
 		t_Classe.text = classe;
     }
+
+	private Vector3 savePos;
+    private void OnMouseDown()
+    {
+		
+	}
+
+    private void OnMouseOver()
+    {
+		
+	}
+
+    private void OnMouseExit()
+    {
+		transform.localScale = new Vector3(1, 1, 1);
+	}
+
+    private void OnMouseEnter()
+    {
+		transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+    }
+
+    private void OnMouseDrag()
+	{
+		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z + transform.position.z);
+
+		Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+		
+		transform.position = objPosition;		
+
+	}
+
+	private void OnMouseUp()
+	{
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		
+
+		if (Physics.Raycast(ray, out hit, 100, layer))
+		{
+						
+        }
+        else
+        {
+			transform.position = savePos;
+		}
+        
+			
+		
+		
+	}
 
 
 }

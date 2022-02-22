@@ -17,19 +17,19 @@ public class EnumEffets : MonoBehaviour
         switch (effet)
         {
             case enumEffets.Attaque:
-                Debug.Log("Attaque : " + Val + " " + duree + " " + rarete);
+                //Debug.Log("Attaque : " + Val + " " + duree + " " + rarete);
                 break;
             case enumEffets.Defense:
-                Debug.Log("Defense : " + Val + " " + duree + " " + rarete);
+                //Debug.Log("Defense : " + Val + " " + duree + " " + rarete);
                 break;
             case enumEffets.Brule:
-                Debug.Log("Brule : " + Val + " " + duree + " " + rarete);
+                //Debug.Log("Brule : " + Val + " " + duree + " " + rarete);
                 break;
             case enumEffets.Poison:
-                Debug.Log("Poison : " + Val + " " + duree + " " + rarete);
+                //Debug.Log("Poison : " + Val + " " + duree + " " + rarete);
                 break;
             default:
-                Debug.Log("Incorrect intelligence level.");
+                //Debug.Log("Incorrect intelligence level.");
                 break;
         }
     }
