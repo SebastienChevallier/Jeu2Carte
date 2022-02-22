@@ -8,12 +8,14 @@ public class _PersonnagesManager : MonoBehaviour
    [Header("Propriet� du personnage : ")]
 	public string _name;
 	
-    public int PV;
-    public int Mana;
+    public int basePV, actualPV;
+    public int baseMana, actualMana;
     public int attPhys;
 	public int attMag;
     public int defPhys;
     public int defMag;
+    public int vitesse;
+    public float tauxCC;
 
 	[Header("Scripts Refs")]
 	public SO_Personnages persoRef;
@@ -25,7 +27,6 @@ public class _PersonnagesManager : MonoBehaviour
     public int valeur2;
     public int duree;
 
-    public 
 
 	
 
@@ -45,12 +46,16 @@ public class _PersonnagesManager : MonoBehaviour
 	public void CreateCharacter(SO_Personnages personnage)
     {
 		_name = personnage._name;
-        PV = personnage.PV;
-        Mana = personnage.Mana;
+        basePV = personnage.basePV;
+        actualPV = personnage.actualPV;
+        baseMana = personnage.baseMana;
+        actualMana = personnage.actualMana;
         attPhys = personnage.attPhys;
         attMag = personnage.attMag;
         defPhys = personnage.defPhys;
         defMag = personnage.defMag;
+        vitesse = personnage.vitesse;
+        tauxCC = personnage.tauxCC;
         capacite = personnage.capacite;	
     } 
 

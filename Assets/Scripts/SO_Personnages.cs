@@ -9,12 +9,16 @@ public class SO_Personnages : ScriptableObject
 
     public string classe;
 
-    public int PV;
-    public int Mana;
+    public int basePV;
+    public int actualPV;
+    public int baseMana;
+    public int actualMana;
     public int attPhys;
     public int attMag;
     public int defPhys;
     public int defMag;
+    public int vitesse;
+    public float tauxCC;
 
     public EnumCapacites.enumCapacite capacite;
 }

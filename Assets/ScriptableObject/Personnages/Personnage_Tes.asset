@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
   m_Name: Personnage_Tes
   m_EditorClassIdentifier: 
-  name: Tes
+  _name: Tes - un ptit lore
   classe: Magicien
-  PV: 150
-  attPhys: 20
-  attMag: 260
-  defPhys: 40
-  defMag: 100
+  basePV: 100
+  actualPV: 100
+  baseMana: 20
+  actualMana: 20
+  attPhys: 2
+  attMag: 8
+  defPhys: 3
+  defMag: 5
+  vitesse: 13
+  tauxCC: 0.15
+  capacite: 0
