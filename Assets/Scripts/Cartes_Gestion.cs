@@ -33,9 +33,10 @@ public class Cartes_Gestion : MonoBehaviour
         }
 
         foreach (SO_Cartes card in cartes)
-        {            
+        {   
+
             var prefCartes = Instantiate(prefab_Cartes, container.transform.position + new Vector3(padding, 0, 0), new Quaternion(0,0,0,0), container.transform);
-            prefCartes.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            
             prefCartes.GetComponent<_CartesManager>().carteRef = card;
             padding += 5f / cartes.Count;
             GO_Cartes.Add(prefCartes);
