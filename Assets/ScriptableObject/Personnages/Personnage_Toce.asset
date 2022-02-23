@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
+  m_Name: Personnage_Toce
+  m_EditorClassIdentifier: 
+  _name: Toce
+  classe: Voleur
+  basePV: 120
+  actualPV: 120
+  baseMana: 10
+  actualMana: 10
+  attPhys: 6
+  attMag: 3
+  defPhys: 2
+  defMag: 3
+  vitesse: 22
+  tauxCC: 0.3
+  capacite: 0
