@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
-  m_Name: Personnage_Tes
+  m_Name: Personnage_DarkSeb
   m_EditorClassIdentifier: 
-  _name: Tes
-  classe: Magicien
-  basePV: 100
-  actualPV: 100
-  baseMana: 20
-  actualMana: 20
-  attPhys: 2
-  attMag: 8
-  defPhys: 3
-  defMag: 5
-  vitesse: 13
+  _name: Dark Seb
+  classe: 
+  basePV: 400
+  actualPV: 400
+  baseMana: 30
+  actualMana: 30
+  attPhys: 25
+  attMag: 13
+  defPhys: 17
+  defMag: 13
+  vitesse: 20
   tauxCC: 0.15
   capacite: 0
