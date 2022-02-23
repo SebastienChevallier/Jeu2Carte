@@ -52,7 +52,7 @@ public class _CartesManager : MonoBehaviour
 	void Start()
     {
 
-		scriptEffet = GameObject.Find("EffetsManager").GetComponent<EnumEffets>();
+		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
 
 		CreateCard(carteRef);
 
