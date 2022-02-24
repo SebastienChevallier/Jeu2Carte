@@ -7,9 +7,15 @@ public class _PersonnagesManager : MonoBehaviour
    
    [Header("Propriet� du personnage : ")]
 	public string _name;
+
+    public string classe;
+    public string race;
 	
     public int basePV, actualPV;
     public int baseMana, actualMana;
+    public float fillAmountPV, fillAmountMana;
+    public float attackBar;
+    public bool hasPlayed;
     public int attPhys;
 	public int attMag;
     public int defPhys;
@@ -46,10 +52,16 @@ public class _PersonnagesManager : MonoBehaviour
 	public void CreateCharacter(SO_Personnages personnage)
     {
 		_name = personnage._name;
+        classe = personnage.classe;
+        race = personnage.race;
         basePV = personnage.basePV;
         actualPV = personnage.actualPV;
+        fillAmountPV = personnage.fillAmountPV;
         baseMana = personnage.baseMana;
         actualMana = personnage.actualMana;
+        fillAmountMana = personnage.fillAmountMana;
+        hasPlayed = personnage.hasPlayed;
+        attackBar = personnage.attackBar;
         attPhys = personnage.attPhys;
         attMag = personnage.attMag;
         defPhys = personnage.defPhys;
@@ -57,10 +69,5 @@ public class _PersonnagesManager : MonoBehaviour
         vitesse = personnage.vitesse;
         tauxCC = personnage.tauxCC;
         capacite = personnage.capacite;	
-    } 
-
-    public void AttackBar() 
-    {
-
     }
 }

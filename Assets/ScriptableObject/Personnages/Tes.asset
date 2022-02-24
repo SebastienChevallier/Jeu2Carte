@@ -10,18 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
-  m_Name: Personnage_Toce
+  m_Name: Tes
   m_EditorClassIdentifier: 
-  _name: Toce
-  classe: Voleur
-  basePV: 120
-  actualPV: 120
-  baseMana: 10
-  actualMana: 10
-  attPhys: 6
-  attMag: 3
-  defPhys: 2
-  defMag: 3
-  vitesse: 22
-  tauxCC: 0.3
+  _name: VITESSE
+  classe: Magicien
+  race: Humain
+  basePV: 100
+  actualPV: 100
+  fillAmountPV: 1
+  baseMana: 20
+  actualMana: 20
+  fillAmountMana: 1
+  attackBar: 0
+  hasPlayed: 0
+  attPhys: 2
+  attMag: 8
+  defPhys: 3
+  defMag: 5
+  vitesse: 67
+  tauxCC: 0.15
   capacite: 0

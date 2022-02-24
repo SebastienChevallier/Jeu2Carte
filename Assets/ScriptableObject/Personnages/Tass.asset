@@ -10,18 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
-  m_Name: Personnage_Tass
+  m_Name: Tass
   m_EditorClassIdentifier: 
-  _name: Tass
+  _name: BRUTASSE
   classe: Barbare
+  race: Orc
   basePV: 200
   actualPV: 200
-  baseMana: 0
-  actualMana: 0
+  fillAmountPV: 1
+  baseMana: 234
+  actualMana: 234
+  fillAmountMana: 1
+  attackBar: 0
+  hasPlayed: 0
   attPhys: 17
   attMag: 2
   defPhys: 3
   defMag: 2
-  vitesse: 11
+  vitesse: 33
   tauxCC: 0.15
   capacite: 0

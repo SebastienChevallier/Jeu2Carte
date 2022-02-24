@@ -10,18 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
-  m_Name: Personnage_Tes
+  m_Name: DarkJulo
   m_EditorClassIdentifier: 
-  _name: Tes
-  classe: Magicien
-  basePV: 100
-  actualPV: 100
-  baseMana: 20
-  actualMana: 20
-  attPhys: 2
-  attMag: 8
+  _name: DarkJulo
+  classe: Boss
+  race: Nain
+  basePV: 300
+  actualPV: 300
+  fillAmountPV: 1
+  baseMana: 40
+  actualMana: 40
+  fillAmountMana: 1
+  attackBar: 0
+  hasPlayed: 0
+  attPhys: 3
+  attMag: 3
   defPhys: 3
-  defMag: 5
-  vitesse: 13
-  tauxCC: 0.15
+  defMag: 3
+  vitesse: 20
+  tauxCC: 20
   capacite: 0
