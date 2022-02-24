@@ -46,13 +46,16 @@ public class _CartesManager : MonoBehaviour
 	public int valeur2;
 	[HideInInspector]
 	public int duree2;
-	[HideInInspector]
+	
+
+	public Camera carteCam;
 
 	// Start is called before the first frame update
 	void Start()
     {
 
-		scriptEffet = GameObject.Find("EffetsManager").GetComponent<EnumEffets>();
+		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
+		carteCam = GameObject.Find("CameraCarte").GetComponent<Camera>();
 
 		CreateCard(carteRef);
 
@@ -108,9 +111,11 @@ public class _CartesManager : MonoBehaviour
 		transform.localScale = new Vector3(1.5f,1.5f,1.5f);
     }
 
+	
+
     private void OnMouseDrag()
 	{
-		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z + transform.position.z);
+		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -carteCam.transform.position.z + savePos.z);
 
 		Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
@@ -119,16 +124,18 @@ public class _CartesManager : MonoBehaviour
 
 	}
 
+	public _SystemManager scriptSystem;
 	private void OnMouseUp()
 	{
 		RaycastHit hit;
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = carteCam.ScreenPointToRay(Input.mousePosition);
 		
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-						
-        }
+			scriptSystem.Attack(valeur1, Mathf.RoundToInt(price), scriptSystem.scriptPersoAttacker.attMag, scriptSystem.scriptPersoTarget.defMag, scriptSystem.scriptPersoAttacker.tauxCC);
+
+		}
         else
         {
 			transform.position = savePos;

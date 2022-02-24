@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7959125869001348088}
   - component: {fileID: 7959125869001348094}
   - component: {fileID: 7959125869001348089}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: T_Effet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 7959125869004830546}
   - component: {fileID: 2560920335523367842}
   - component: {fileID: 593776646994078956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: P_Cartes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7959125869004830556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3bb0ac6d444a29429119a2e67727ce1, type: 3}
+  m_Script: {fileID: 11500000, guid: 05a3023d41c93444481c836c3cc51f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 7959125869204331469}
   - component: {fileID: 7959125869204331459}
   - component: {fileID: 7959125869204331458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: T_Effet2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 7959125869455349854}
   - component: {fileID: 7959125869455349849}
   - component: {fileID: 7959125869455349848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 7959125869696490792}
   - component: {fileID: 7959125869696490798}
   - component: {fileID: 7959125869696490793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: T_Classe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 7959125870360880716}
   - component: {fileID: 7959125870360880706}
   - component: {fileID: 7959125870360880717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "T_Raret\xE9"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +900,7 @@ GameObject:
   - component: {fileID: 7959125870534139431}
   - component: {fileID: 7959125870534139429}
   - component: {fileID: 7959125870534139428}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: T_Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 7959125870879408831}
   - component: {fileID: 7959125870879408818}
   - component: {fileID: 7959125870879408829}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1153,7 +1153,7 @@ GameObject:
   - component: {fileID: 7959125870920666979}
   - component: {fileID: 7959125870920666977}
   - component: {fileID: 7959125870920666976}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: T_Nom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

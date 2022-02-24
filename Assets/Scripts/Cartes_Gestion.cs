@@ -40,7 +40,7 @@ public class Cartes_Gestion : MonoBehaviour
         {
             
             var prefCartes = Instantiate(prefab_Cartes, GameObject.Find("Min").transform.position + new Vector3(distance, 0, 0), new Quaternion(0,0,0,0), container.transform);
-            prefCartes.transform.localRotation = Quaternion.Euler(0, 5, 0);
+            prefCartes.transform.localRotation = Quaternion.Euler(0, 2, 0);
             distance += distIntercarte;
             prefCartes.GetComponent<_CartesManager>().carteRef = card;            
             GO_Cartes.Add(prefCartes);
