@@ -6,48 +6,48 @@ using TMPro;
 
 public class _SystemManager : MonoBehaviour
 {
-    //usefull for damage calculator
+    [Header("Paramètres de combat")]
     public float modifier = 1f;
-    private float rand;
     public float DCC = 2;
     public float minRand = 0.9f;
     public float maxRand = 1.1f;
-    private float previsuMaxPV, previsuMinPV;
-    private float previsuMana;
-    private float actualDegats;
-    private float cost;
 
-    //Stats Characters
+    [Header("Equipes")]
     public _PersonnagesManager[] team = new _PersonnagesManager[3];
-    public _PersonnagesManager scriptPersoAttacker;
-
     public List<_PersonnagesManager> enemyTeam = new List<_PersonnagesManager>();
-    public _PersonnagesManager scriptPersoTarget;
-
     public List<_PersonnagesManager> everybody = new List<_PersonnagesManager>();
 
-    private Transform allEnemies;
+    [HideInInspector]
+    public _PersonnagesManager scriptPersoAttacker, scriptPersoTarget;
 
-    //UI var
-    public Image pvBarAlly, pvBarEnemy, pvBarMin, pvBarMax, manaBarAlly, manaBarEnemy, manaBarPrevisu;
-    private GameObject tmp_panel;
+    [Header("UI")]
+    public Image pvBarAlly;
+    public Image pvBarEnemy;
+    public Image pvBarMin;
+    public Image pvBarMax;
+    public Image manaBarAlly;
+    public Image manaBarEnemy;
+    public Image manaBarPrevisu;
+
+    private float previsuMaxPV, previsuMinPV, previsuMana;
+
     private TextMeshProUGUI tmp_name, tmp_pv, tmp_mana, tmp_attphys, tmp_attmag, tmp_defphys, tmp_defmag, tmp_vitesse, tmp_tauxcc;
     private TextMeshProUGUI tmp_nameEnemy, tmp_pvEnemy, tmp_manaEnemy, tmp_attphysEnemy, tmp_attmagEnemy, tmp_defphysEnemy, tmp_defmagEnemy, tmp_vitesseEnemy, tmp_tauxccEnemy;
 
 
     //Battle
-    private int persoStart = 0;
-    private int enemyStart = 0;
+    private int persoStart = 0, enemyStart = 0;
 
     private bool cardPlayed = false;
-    private bool isPlaying = false;
+    private bool playerPlaying = false, enemyPlaying = false;
+
+    private float minDegats, maxDegats, actualDegats, cost;
 
 
-    void Start() 
+    void Start()
     {
         //Initialize battle
-        allEnemies = GameObject.Find("Enemy Team").transform;
-
+        Transform allEnemies = GameObject.Find("EnemyTeam").transform;
         foreach (_PersonnagesManager perso in team)
         {
             if (perso.vitesse > persoStart)
@@ -57,7 +57,6 @@ public class _SystemManager : MonoBehaviour
             }
             everybody.Add(perso);
         }
-
         foreach (Transform enemy in allEnemies)
         {
             if (enemy.gameObject.GetComponent<_PersonnagesManager>().vitesse > enemyStart)
@@ -67,12 +66,9 @@ public class _SystemManager : MonoBehaviour
             }
             enemyTeam.Add(enemy.gameObject.GetComponent<_PersonnagesManager>());
         }
-
         everybody.AddRange(enemyTeam);
 
-
         //UI
-        tmp_panel = GameObject.Find("PrevisuPlayer");
         tmp_name = GameObject.Find("PrevisuPlayer").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         tmp_pv = GameObject.Find("PrevisuPlayer").transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
         tmp_mana = GameObject.Find("PrevisuPlayer").transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -94,7 +90,7 @@ public class _SystemManager : MonoBehaviour
         tmp_tauxccEnemy = GameObject.Find("PrevisuEnemy").transform.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         //UI
         tmp_name.text = scriptPersoAttacker._name;
@@ -118,93 +114,137 @@ public class _SystemManager : MonoBehaviour
         tmp_tauxccEnemy.text = (scriptPersoTarget.tauxCC * 100).ToString() + " %";
 
         pvBarAlly.fillAmount = scriptPersoAttacker.fillAmountPV;
-        pvBarEnemy.fillAmount = scriptPersoTarget.fillAmountPV;
         manaBarAlly.fillAmount = scriptPersoAttacker.fillAmountMana;
+        pvBarEnemy.fillAmount = scriptPersoTarget.fillAmountPV;
         manaBarEnemy.fillAmount = scriptPersoTarget.fillAmountMana;
 
-
         //PLAY
-        if (!isPlaying)
+        Play();
+    }
+
+    private void Play()
+    {
+        if (!playerPlaying && !enemyPlaying)
             Load_AttackBar();
-    }
-
-    public void Attack (int power, int cost, int Att, int Def, float tauxCC) 
-    {
-        rand = Random.Range(minRand, maxRand);
-        float minDegats = (power * Att * modifier * minRand) / Def;
-        float maxDegats = (power * Att * modifier * maxRand) / Def;
-
-        float checkCC = Random.Range(0.0f, 1.0f);
-        if (checkCC <= tauxCC)
-        {
-            actualDegats = (power * Att * modifier * rand * DCC) / Def; 
-            Debug.Log("CRIT !!!");
-        }
-        else actualDegats = (power * Att * modifier * rand) / Def;
-
-        previsuMinPV = scriptPersoTarget.actualPV - minDegats;
-        previsuMaxPV = scriptPersoTarget.actualPV - maxDegats;
-
-        previsuMana = scriptPersoAttacker.actualMana - cost;
-    }
-    
-    public void OnClickValidate ()
-    {
-        if (cardPlayed && scriptPersoAttacker.actualMana >= cost)
-        {
-            scriptPersoAttacker.actualMana -= Mathf.RoundToInt(cost);
-            scriptPersoTarget.actualPV -= Mathf.RoundToInt(actualDegats);
-            scriptPersoTarget.fillAmountPV -= actualDegats / scriptPersoTarget.basePV;
-            scriptPersoAttacker.fillAmountMana -= cost / scriptPersoAttacker.baseMana;
-            pvBarMax.fillAmount = 0;
-            pvBarMin.fillAmount = 0;
-            manaBarPrevisu.fillAmount = 0;
-            scriptPersoAttacker.attackBar = 0;
-
-            cardPlayed = false;
-            isPlaying = false;
-
-            if (scriptPersoTarget.actualPV <= 0) Death(scriptPersoTarget.gameObject);
-        }
-    }
-
-    public void OnClickCancel () 
-    {
-        pvBarMax.fillAmount = 0;
-        pvBarMin.fillAmount = 0;
-        manaBarPrevisu.fillAmount = 0;
-
-        cardPlayed = false;
-    }
-
-    public void OnClickTest ()
-    {
-        cardPlayed = true;
-        cost = 6;
-
-        Attack(100, Mathf.RoundToInt(cost), scriptPersoAttacker.attMag, scriptPersoTarget.defMag, scriptPersoAttacker.tauxCC);
-
-        pvBarMax.fillAmount = 1 - (previsuMaxPV / scriptPersoTarget.basePV);
-        pvBarMin.fillAmount = 1 - (previsuMinPV / scriptPersoTarget.basePV);
-        manaBarPrevisu.fillAmount = 1 - (previsuMana / scriptPersoAttacker.baseMana);
+        else if (enemyPlaying)
+            Enemy_Attack(20, 5, false, scriptPersoTarget, scriptPersoAttacker);
     }
 
     private void Load_AttackBar()
     {
         foreach (_PersonnagesManager perso in everybody)
         {
-            perso.attackBar += (perso.vitesse * 7) / 100;
+            perso.attackBar += perso.vitesse / 100.0f;
             if (perso.attackBar >= 100)
             {
-                isPlaying = true;
-                scriptPersoAttacker = perso;
-                perso.hasPlayed = true;
+                if (perso == team[0] || perso == team[1] || perso == team[2])
+                {
+                    Debug.Log(perso._name);
+                    playerPlaying = true;
+                    scriptPersoAttacker = perso;
+                }
+                else
+                {
+                    Debug.Log(perso._name);
+                    enemyPlaying = true;
+                    scriptPersoTarget = perso;
+                }
             }
         }
     }
 
-    private void Death (GameObject target) 
+    private void Player_Attack(int power, int cost, bool phys, _PersonnagesManager attacker, _PersonnagesManager target)
+    {
+        float rand = Random.Range(minRand, maxRand);
+        float checkCC = Random.Range(0.0f, 1.0f);
+
+        if (phys)
+        {
+            minDegats = (power * attacker.attPhys * modifier * minRand) / target.defPhys;
+            maxDegats = (power * attacker.attPhys * modifier * maxRand) / target.defPhys;
+            if (checkCC <= attacker.tauxCC)
+            {
+                actualDegats = (power * attacker.attPhys * modifier * rand * DCC) / target.defPhys;
+                Debug.Log("CRIT !!!");
+            }
+            else actualDegats = (power * attacker.attPhys * modifier * rand) / target.defPhys;
+        }
+        else
+        {
+            minDegats = (power * attacker.attMag * modifier * minRand) / target.defMag;
+            maxDegats = (power * attacker.attMag * modifier * maxRand) / target.defMag;
+            if (checkCC <= attacker.tauxCC)
+            {
+                actualDegats = (power * attacker.attMag * modifier * rand * DCC) / target.defMag;
+                Debug.Log("CRIT !!!");
+            }
+            else actualDegats = (power * attacker.attMag * modifier * rand) / target.defMag;
+        }
+
+        //UI
+        if (playerPlaying && cardPlayed)
+        {
+            previsuMinPV = target.actualPV - minDegats;
+            previsuMaxPV = target.actualPV - maxDegats;
+            previsuMana = attacker.actualMana - cost;
+            pvBarMax.fillAmount = 1 - (previsuMaxPV / target.basePV);
+            pvBarMin.fillAmount = 1 - (previsuMinPV / target.basePV);
+            manaBarPrevisu.fillAmount = 1 - (previsuMana / attacker.baseMana);
+        }
+    }
+
+    private void Enemy_Attack(int power, int cost, bool phys, _PersonnagesManager attacker, _PersonnagesManager target)
+    {
+        Debug.Log(scriptPersoTarget._name + " a attaqué !");
+        Player_Attack(power, cost, phys, attacker, target);
+        Inflict_Damage(attacker, target);
+        enemyPlaying = false;
+
+        if (scriptPersoAttacker.actualPV <= 0) Death(scriptPersoAttacker.gameObject);
+    }
+
+    private void Inflict_Damage(_PersonnagesManager attacker, _PersonnagesManager target)
+    {
+        target.actualPV -= Mathf.RoundToInt(actualDegats);
+        target.fillAmountPV -= actualDegats / target.basePV;
+        attacker.actualMana -= Mathf.RoundToInt(cost);
+        attacker.fillAmountMana -= cost / attacker.baseMana;
+        attacker.attackBar = 0;
+    }
+
+    private void Death(GameObject target)
     {
         GameObject.Destroy(target);
+    }
+
+    public void OnClickTest()
+    {
+        cardPlayed = true;
+        cost = 2;
+
+        Player_Attack(100, Mathf.RoundToInt(cost), true, scriptPersoAttacker, scriptPersoTarget);
+    }
+
+    public void OnClickValidate()
+    {
+        if (playerPlaying && cardPlayed && scriptPersoAttacker.actualMana >= cost)
+        {
+            Inflict_Damage(scriptPersoAttacker, scriptPersoTarget);
+            pvBarMax.fillAmount = 0;
+            pvBarMin.fillAmount = 0;
+            manaBarPrevisu.fillAmount = 0;
+            cardPlayed = false;
+            playerPlaying = false;
+
+            if (scriptPersoTarget.actualPV <= 0) Death(scriptPersoTarget.gameObject);
+        }
+    }
+
+    public void OnClickCancel()
+    {
+        pvBarMax.fillAmount = 0;
+        pvBarMin.fillAmount = 0;
+        manaBarPrevisu.fillAmount = 0;
+        cardPlayed = false;
     }
 }

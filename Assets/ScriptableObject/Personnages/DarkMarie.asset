@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
-  m_Name: DarkLouis
+  m_Name: DarkMarie
   m_EditorClassIdentifier: 
-  _name: DarkLouis
+  _name: DarkMarie
   classe: Boss
-  race: Hobbit
-  basePV: 250
-  actualPV: 250
-  baseMana: 70
-  actualMana: 70
+  race: Elfe
+  basePV: 150
+  actualPV: 150
+  baseMana: 100
+  actualMana: 100
   fillAmountPV: 1
   fillAmountMana: 1
   attPhys: 7
-  attMag: 7
-  defPhys: 7
-  defMag: 7
-  vitesse: 26
-  tauxCC: 70
+  attMag: 13
+  defPhys: 6
+  defMag: 8
+  vitesse: 13
+  tauxCC: 0.4
   attackBar: 0
   capacite: 0

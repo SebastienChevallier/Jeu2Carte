@@ -17,16 +17,15 @@ MonoBehaviour:
   race: Elfe noir
   basePV: 400
   actualPV: 400
-  fillAmountPV: 1
   baseMana: 30
   actualMana: 30
+  fillAmountPV: 1
   fillAmountMana: 1
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 25
   attMag: 13
   defPhys: 10
   defMag: 7
   vitesse: 20
   tauxCC: 0.15
+  attackBar: 0
   capacite: 0

@@ -17,16 +17,15 @@ MonoBehaviour:
   race: Humain
   basePV: 100
   actualPV: 100
-  fillAmountPV: 1
   baseMana: 20
   actualMana: 20
+  fillAmountPV: 1
   fillAmountMana: 1
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 2
   attMag: 8
   defPhys: 3
   defMag: 5
-  vitesse: 67
+  vitesse: 32
   tauxCC: 0.15
+  attackBar: 0
   capacite: 0

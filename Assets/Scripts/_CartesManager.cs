@@ -133,7 +133,7 @@ public class _CartesManager : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			scriptSystem.Attack(valeur1, Mathf.RoundToInt(price), scriptSystem.scriptPersoAttacker.attMag, scriptSystem.scriptPersoTarget.defMag, scriptSystem.scriptPersoAttacker.tauxCC);
+			//scriptSystem.Attack(valeur1, Mathf.RoundToInt(price), scriptSystem.scriptPersoAttacker.attMag, scriptSystem.scriptPersoTarget.defMag, scriptSystem.scriptPersoAttacker.tauxCC);
 
 		}
         else

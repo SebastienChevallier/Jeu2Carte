@@ -376,7 +376,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 3, y: 0.3}
+  m_SizeDelta: {x: 2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &44438832
 MonoBehaviour:
@@ -770,14 +770,13 @@ MonoBehaviour:
   actualMana: 0
   fillAmountPV: 0
   fillAmountMana: 0
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 0
   attMag: 0
   defPhys: 0
   defMag: 0
   vitesse: 0
   tauxCC: 0
+  attackBar: 0
   persoRef: {fileID: 11400000, guid: c0e602be7d92b9f42a97bdcffaaecd51, type: 2}
   scriptCapacites: {fileID: 1549569669}
   capacite: 0
@@ -856,7 +855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164940453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8600001, y: -1.48, z: -1.495}
+  m_LocalPosition: {x: -3.8600001, y: -1.48, z: -2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1410164013}
@@ -891,7 +890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169216747}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8600001, y: -1.48, z: -1.495}
+  m_LocalPosition: {x: -3.8600001, y: -1.48, z: -2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1962866650}
@@ -919,14 +918,13 @@ MonoBehaviour:
   actualMana: 0
   fillAmountPV: 0
   fillAmountMana: 0
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 0
   attMag: 0
   defPhys: 0
   defMag: 0
   vitesse: 0
   tauxCC: 0
+  attackBar: 0
   persoRef: {fileID: 11400000, guid: 34a4b1ba72f273b4cb84765d5971a72a, type: 2}
   scriptCapacites: {fileID: 1549569669}
   capacite: 0
@@ -1568,10 +1566,10 @@ MonoBehaviour:
   - {fileID: 164940454}
   - {fileID: 524446216}
   - {fileID: 1208692361}
-  scriptPersoAttacker: {fileID: 164940454}
   enemyTeam: []
-  scriptPersoTarget: {fileID: 169216749}
   everybody: []
+  scriptPersoAttacker: {fileID: 164940454}
+  scriptPersoTarget: {fileID: 169216749}
   pvBarAlly: {fileID: 1873073806}
   pvBarEnemy: {fileID: 1206522567}
   pvBarMin: {fileID: 1175806894}
@@ -1805,7 +1803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 247263025}
   m_Layer: 0
-  m_Name: Enemy Team
+  m_Name: EnemyTeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3027,14 +3025,13 @@ MonoBehaviour:
   actualMana: 0
   fillAmountPV: 0
   fillAmountMana: 0
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 0
   attMag: 0
   defPhys: 0
   defMag: 0
   vitesse: 0
   tauxCC: 0
+  attackBar: 0
   persoRef: {fileID: 11400000, guid: f66dbc0115933ee459f8d48b5ed583af, type: 2}
   scriptCapacites: {fileID: 1549569669}
   capacite: 0
@@ -3261,14 +3258,13 @@ MonoBehaviour:
   actualMana: 0
   fillAmountPV: 0
   fillAmountMana: 0
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 0
   attMag: 0
   defPhys: 0
   defMag: 0
   vitesse: 0
   tauxCC: 0
+  attackBar: 0
   persoRef: {fileID: 11400000, guid: 6a48a4621eaf1f840a482db866c23bba, type: 2}
   scriptCapacites: {fileID: 1549569669}
   capacite: 0
@@ -3635,7 +3631,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 3, y: 0.3}
+  m_SizeDelta: {x: 2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &617046419
 MonoBehaviour:
@@ -4432,7 +4428,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 3, y: 0.3}
+  m_SizeDelta: {x: 2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836243454
 MonoBehaviour:
@@ -6699,7 +6695,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 3, y: 0.3}
+  m_SizeDelta: {x: 2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1198973376
 MonoBehaviour:
@@ -6871,7 +6867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208692359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8600001, y: -1.48, z: 1.55}
+  m_LocalPosition: {x: -3.8600001, y: -1.48, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 920974584}
@@ -6899,14 +6895,13 @@ MonoBehaviour:
   actualMana: 0
   fillAmountPV: 0
   fillAmountMana: 0
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 0
   attMag: 0
   defPhys: 0
   defMag: 0
   vitesse: 0
   tauxCC: 0
+  attackBar: 0
   persoRef: {fileID: 11400000, guid: ba5acdc36b51267438300840bddb43ff, type: 2}
   scriptCapacites: {fileID: 1549569669}
   capacite: 0
@@ -7987,7 +7982,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 3, y: 0.3}
+  m_SizeDelta: {x: 2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427031156
 MonoBehaviour:
@@ -8933,8 +8928,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.27721676, y: -0, z: -0, w: 0.9608074}
-  m_LocalPosition: {x: 0, y: 6.55, z: -11.615828}
+  m_LocalRotation: {x: 0.27092367, y: -0, z: -0, w: 0.9626009}
+  m_LocalPosition: {x: 0, y: 2.5, z: -8.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 539495314}
@@ -8942,7 +8937,7 @@ Transform:
   - {fileID: 368471413}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 32.188, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 31.439, y: 0, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9532,7 +9527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899271060}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8600001, y: -1.48, z: 1.55}
+  m_LocalPosition: {x: -3.8600001, y: -1.48, z: 2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 187720614}
@@ -9560,14 +9555,13 @@ MonoBehaviour:
   actualMana: 0
   fillAmountPV: 0
   fillAmountMana: 0
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 0
   attMag: 0
   defPhys: 0
   defMag: 0
   vitesse: 0
   tauxCC: 0
+  attackBar: 0
   persoRef: {fileID: 11400000, guid: 20d7ecb6bca2a4447a4f546c622af202, type: 2}
   scriptCapacites: {fileID: 1549569669}
   capacite: 0
@@ -10474,7 +10468,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 3, y: 0.3}
+  m_SizeDelta: {x: 2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107955674
 MonoBehaviour:

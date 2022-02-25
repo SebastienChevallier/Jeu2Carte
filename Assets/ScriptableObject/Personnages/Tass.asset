@@ -17,16 +17,15 @@ MonoBehaviour:
   race: Orc
   basePV: 200
   actualPV: 200
-  fillAmountPV: 1
   baseMana: 234
   actualMana: 234
+  fillAmountPV: 1
   fillAmountMana: 1
-  attackBar: 0
-  hasPlayed: 0
   attPhys: 17
   attMag: 2
   defPhys: 3
   defMag: 2
-  vitesse: 33
+  vitesse: 40
   tauxCC: 0.15
+  attackBar: 0
   capacite: 0
