@@ -4,63 +4,82 @@ using UnityEngine;
 
 public class _PersonnagesManager : MonoBehaviour
 {
-   
-   [Header("Proprietï¿½ du personnage : ")]
+    [Header("Référence")]
+    public SO_Personnages persoRef;
+
+    [Header("Infos")]
 	public string _name;
-	
-    public int basePV, actualPV;
-    public int baseMana, actualMana;
+    public EnumPerso.classes classe;
+    public EnumPerso.races race;
+
+    [Header("Stats")]
+    public int basePV;
+    public int actualPV;
+    public int baseMana;
+    public int actualMana;
+
+    public float attackBar;
+
+    [HideInInspector]
+    public float fillAmountPV, fillAmountMana;
+
     public int attPhys;
-	public int attMag;
+    public int attMag;
     public int defPhys;
     public int defMag;
     public int vitesse;
     public float tauxCC;
 
-	[Header("Scripts Refs")]
-	public SO_Personnages persoRef;
-	public EnumCapacites scriptCapacites;
+    public EnumPerso.elements weakness;
+    public EnumPerso.elements resistance;
 
-	[Header("Value Skill : ")]
+    [HideInInspector]
+    public bool hasPlayed;
+
+	[Header("Capacités")]
 	public EnumCapacites.enumCapacite capacite;
 	public int valeur1;
     public int valeur2;
     public int duree;
 
+    [HideInInspector]
+    public EnumCapacites scriptCapacites;
 
-	
 
-	// Start is called before the first frame update
-	void Start()
+    void Start()
     {
 		scriptCapacites = GameObject.Find("GAMEMANAGER").GetComponent<EnumCapacites>();
 		CreateCharacter(persoRef);
-
-		//scriptCapacites.DoSkill(capacite, valeur1, valeur2, duree);
-
-        //AttackBar
-
-
     }
 
 	public void CreateCharacter(SO_Personnages personnage)
     {
 		_name = personnage._name;
+        classe = personnage.classe;
+        race = personnage.race;
+
         basePV = personnage.basePV;
         actualPV = personnage.actualPV;
+        fillAmountPV = personnage.fillAmountPV;
+
         baseMana = personnage.baseMana;
         actualMana = personnage.actualMana;
+        fillAmountMana = personnage.fillAmountMana;
+
+        attackBar = personnage.attackBar;
+
         attPhys = personnage.attPhys;
         attMag = personnage.attMag;
         defPhys = personnage.defPhys;
         defMag = personnage.defMag;
         vitesse = personnage.vitesse;
         tauxCC = personnage.tauxCC;
+
+        weakness = personnage.weakness;
+        resistance = personnage.resistance;
+
+        hasPlayed = personnage.hasPlayed;
+
         capacite = personnage.capacite;	
-    } 
-
-    public void AttackBar() 
-    {
-
     }
 }

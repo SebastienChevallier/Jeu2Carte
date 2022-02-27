@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 using TMPro;
 
 public class _CartesManager : MonoBehaviour
@@ -47,17 +47,18 @@ public class _CartesManager : MonoBehaviour
 	[HideInInspector]
 	public int duree2;
 
+	public Camera carteCam;
 	public _SystemManager scriptSystem;
 
 	private Vector3 savePos;
 
 
-	public Camera carteCam;
 
-	// Start is called before the first frame update
 	void Start()
     {
+
 		scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
+
 		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
 		carteCam = GameObject.Find("CameraCarte").GetComponent<Camera>();
 
@@ -70,7 +71,6 @@ public class _CartesManager : MonoBehaviour
 
 	public void CreateCard(SO_Cartes carte)
     {
-
 		_name = carte._name;
 
 		price = carte.price;
@@ -79,7 +79,6 @@ public class _CartesManager : MonoBehaviour
 		effet2= carte.effet2;
 		classe = carte.classe;
 
-		
 		valeur1 = carte.valeur1;
 		valeur2 = carte.valeur2;
 		duree1 = carte.duree1;
@@ -94,7 +93,7 @@ public class _CartesManager : MonoBehaviour
 		t_Classe.text = classe;
     }
 
-	
+
     private void OnMouseDown()
     {
 		
@@ -115,39 +114,28 @@ public class _CartesManager : MonoBehaviour
 		transform.localScale = new Vector3(1.5f,1.5f,1.5f);
     }
 
-	
-
     private void OnMouseDrag()
 	{
 		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -carteCam.transform.position.z + savePos.z);
 
 		Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
 		
 		transform.position = objPosition;		
-
 	}
 
-	
+
 	private void OnMouseUp()
 	{
 		RaycastHit hit;
 		Ray ray = carteCam.ScreenPointToRay(Input.mousePosition);
-		
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			scriptSystem.Attack(valeur1, Mathf.RoundToInt(price), scriptSystem.scriptPersoAttacker.attMag, scriptSystem.scriptPersoTarget.defMag, scriptSystem.scriptPersoAttacker.tauxCC);
 
 		}
         else
         {
 			transform.position = savePos;
-		}
-        
-			
-		
-		
+		}	
 	}
-
 }

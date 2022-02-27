@@ -45,6 +45,5 @@ public class Cartes_Gestion : MonoBehaviour
             prefCartes.GetComponent<_CartesManager>().carteRef = card;            
             GO_Cartes.Add(prefCartes);
         }
-        
     }
 }

@@ -10,18 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
-  m_Name: Personnage_Tass
+  m_Name: Toce
   m_EditorClassIdentifier: 
-  _name: Tass
-  classe: Barbare
-  basePV: 200
-  actualPV: 200
-  baseMana: 0
-  actualMana: 0
-  attPhys: 17
-  attMag: 2
-  defPhys: 3
-  defMag: 2
-  vitesse: 11
+  _name: KRATOSS
+  classe: 2
+  race: 0
+  basePV: 190
+  actualPV: 190
+  baseMana: 70
+  actualMana: 70
+  fillAmountPV: 1
+  fillAmountMana: 1
+  attPhys: 4
+  attMag: 19
+  defPhys: 8
+  defMag: 9
+  vitesse: 32
   tauxCC: 0.15
+  weakness: 1
+  resistance: 0
+  attackBar: 0
+  hasPlayed: 0
   capacite: 0
