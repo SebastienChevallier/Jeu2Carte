@@ -41,7 +41,7 @@ public class _SystemManager : MonoBehaviour
     //Battle
     private int persoStart = 0, enemyStart = 0;
 
-    private bool cardPlayed = false;
+    public bool cardPlayed = false;
     private bool playerPlaying = false, enemyPlaying = false;
     private bool endOfTurn = false;
 
@@ -182,7 +182,7 @@ public class _SystemManager : MonoBehaviour
         return true;
     }
 
-    private void Player_Attack(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    public void Player_Attack(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
         float rand = Random.Range(minRand, maxRand);
         float checkCC = Random.Range(0.0f, 1.0f);
@@ -223,7 +223,7 @@ public class _SystemManager : MonoBehaviour
         }
     }
 
-    private void Enemy_Attack(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    public void Enemy_Attack(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
         Player_Attack(power, phys, element, attacker, target);
         Inflict_Damage(attacker, target);
@@ -273,17 +273,14 @@ public class _SystemManager : MonoBehaviour
             Debug.Log("VICTOIRE !!!");
     }
 
-    private void Load_Previsu()
-    {
-        if (playerPlaying && cardPlayed)
-        {
-            previsuMinPV = scriptPersoTarget.actualPV - minDegats;
-            previsuMaxPV = scriptPersoTarget.actualPV - maxDegats;
-            previsuMana = scriptPersoAttacker.actualMana - cardCost;
-            pvBarMax.fillAmount = 1 - (previsuMaxPV / scriptPersoTarget.basePV);
-            pvBarMin.fillAmount = 1 - (previsuMinPV / scriptPersoTarget.basePV);
-            manaBarPrevisu.fillAmount = 1 - (previsuMana / scriptPersoAttacker.baseMana);
-        }
+    public void Load_Previsu()
+    {        
+        previsuMinPV = scriptPersoTarget.actualPV - minDegats;
+        previsuMaxPV = scriptPersoTarget.actualPV - maxDegats;
+        previsuMana = scriptPersoAttacker.actualMana - cardCost;
+        pvBarMax.fillAmount = 1 - (previsuMaxPV / scriptPersoTarget.basePV);
+        pvBarMin.fillAmount = 1 - (previsuMinPV / scriptPersoTarget.basePV);
+        manaBarPrevisu.fillAmount = 1 - (previsuMana / scriptPersoAttacker.baseMana);
     }
 
     private void Cancel_Previsu()
@@ -309,6 +306,7 @@ public class _SystemManager : MonoBehaviour
             Inflict_Damage(scriptPersoAttacker, scriptPersoTarget);
             Cancel_Previsu();
             playerPlaying = false;
+            cardPlayed = false;
 
             //Death
             if (scriptPersoTarget.actualPV <= 0) Death(scriptPersoTarget);
