@@ -46,7 +46,7 @@ public class _CartesManager : MonoBehaviour
 	public int valeur2;
 	[HideInInspector]
 	public int duree2;
-	
+
 	public Camera carteCam;
 	public _SystemManager scriptSystem;
 
@@ -56,6 +56,9 @@ public class _CartesManager : MonoBehaviour
 
 	void Start()
     {
+
+		scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
+
 		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
 		carteCam = GameObject.Find("CameraCarte").GetComponent<Camera>();
 
@@ -90,6 +93,7 @@ public class _CartesManager : MonoBehaviour
 		t_Classe.text = classe;
     }
 
+
     private void OnMouseDown()
     {
 		
@@ -118,6 +122,7 @@ public class _CartesManager : MonoBehaviour
 		
 		transform.position = objPosition;		
 	}
+
 
 	private void OnMouseUp()
 	{

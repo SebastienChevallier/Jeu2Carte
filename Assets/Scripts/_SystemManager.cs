@@ -6,7 +6,7 @@ using TMPro;
 
 public class _SystemManager : MonoBehaviour
 {
-    [Header("Paramètres de combat")]
+    [Header("Paramï¿½tres de combat")]
     public float modifier = 1f;
     public float DCC = 2;
     public float minRand = 0.9f;
@@ -241,7 +241,7 @@ public class _SystemManager : MonoBehaviour
         attacker.actualMana -= Mathf.RoundToInt(cardCost);
         attacker.fillAmountMana -= cardCost / attacker.baseMana;
         attacker.attackBar = 0;
-        Debug.Log(attacker._name + " a infligé " + Mathf.RoundToInt(actualDegats) + " points de dégats à " + target._name);
+        Debug.Log(attacker._name + " a infligï¿½ " + Mathf.RoundToInt(actualDegats) + " points de dï¿½gats ï¿½ " + target._name);
     }
 
     private void Death(_PersonnagesManager target)
