@@ -131,7 +131,10 @@ public class _CartesManager : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-
+			scriptSystem.cardPlayed = true;
+			scriptSystem.Player_Attack(valeur1, true, EnumPerso.elements.Air, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+			scriptSystem.Load_Previsu();
+			
 		}
         else
         {
