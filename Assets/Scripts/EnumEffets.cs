@@ -12,7 +12,7 @@ public class EnumEffets : MonoBehaviour
         Poison
     }
 
-    public void DoEffect(enumEffets effet, int Val, int duree, int rarete, GameObject cible)
+    public void DoEffect(enumEffets effet, int Val, int duree, EnumPerso.rarities rarete, _PersonnagesManager target)
     {
         switch (effet)
         {

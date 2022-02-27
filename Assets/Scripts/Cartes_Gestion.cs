@@ -9,8 +9,8 @@ public class Cartes_Gestion : MonoBehaviour
     public GameObject prefab_Cartes;
 
     private GameObject container;
-    private float padding = 0f;
     
+   
     
     private void Start()
     {
@@ -21,11 +21,11 @@ public class Cartes_Gestion : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            LoadHand();
+            Load_Hand();
         }
     }
 
-    void LoadHand()
+    void Load_Hand()
     {
         float distance = Vector3.Distance(GameObject.Find("Min").transform.position, GameObject.Find("Max").transform.position);
         float distIntercarte = distance / (cartes.Count +1);
@@ -37,8 +37,7 @@ public class Cartes_Gestion : MonoBehaviour
         }
 
         foreach (SO_Cartes card in cartes)
-        {
-            
+        { 
             var prefCartes = Instantiate(prefab_Cartes, GameObject.Find("Min").transform.position + new Vector3(distance, 0, 0), new Quaternion(0,0,0,0), container.transform);
             prefCartes.transform.localRotation = Quaternion.Euler(0, 2, 0);
             distance += distIntercarte;

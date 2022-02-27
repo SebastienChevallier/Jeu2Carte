@@ -5,18 +5,32 @@ using TMPro;
 
 public class _CartesManager : MonoBehaviour
 {
-	[HideInInspector]
+	[Header("Infos")]
 	public string _name;
-	[HideInInspector]
-	public int price;
-	[HideInInspector]
-	public string type;
-	[HideInInspector]
-	public int rarete;
-	[HideInInspector]
-	public string classe;
+	public Sprite image;
+	public int cost;
+	public EnumPerso.types type;
+	public EnumPerso.classes classe;
+	public EnumPerso.elements element;
+	public EnumPerso.rarities rarete;
 
-	[Header("Textes Infos cartes : ")]
+	public EnumEffets.enumEffets effet1;
+	public int valeur1;
+	public int duree1;
+
+	public EnumEffets.enumEffets effet2;
+	public int valeur2;
+	public int duree2;
+
+	public EnumEffets.enumEffets effet3;
+	public int valeur3;
+	public int duree3;
+
+	public EnumEffets.enumEffets effet4;
+	public int valeur4;
+	public int duree4;
+
+	[Header("UI")]
 	public TextMeshPro t_Nom;
 	public TextMeshPro t_Type;
 	public TextMeshPro t_Rarete;
@@ -29,33 +43,17 @@ public class _CartesManager : MonoBehaviour
 	[Header("Scripts Refs")]
 	public SO_Cartes carteRef;
 	private EnumEffets scriptEffet;
-	public GameObject cible;
-
-	[HideInInspector]
-	public EnumEffets.enumEffets effet1;
-	[HideInInspector]
-	public int valeur1;
-	[HideInInspector]
-	public int duree1;
-
-
-	[HideInInspector]
-	public EnumEffets.enumEffets effet2;
-	[HideInInspector]
-	public int valeur2;
-	[HideInInspector]
-	public int duree2;
 
 	public Camera carteCam;
 	public _SystemManager scriptSystem;
 
+	//UI
 	private Vector3 savePos;
 
 
 
 	void Start()
     {
-
 		scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
 
 		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
@@ -63,33 +61,41 @@ public class _CartesManager : MonoBehaviour
 
 		CreateCard(carteRef);
 
-		scriptEffet.DoEffect(effet1, valeur1, duree1, rarete, cible);
-		scriptEffet.DoEffect(effet2, valeur2, duree2, rarete, cible);
 		savePos = transform.position;
 	}
 
 	public void CreateCard(SO_Cartes carte)
     {
 		_name = carte._name;
-
-		price = carte.price;
+		image = carte.image;
+		cost = carte.cost;
 		type = carte.type;
-		effet1 = carte.effet1;
-		effet2= carte.effet2;
 		classe = carte.classe;
-
-		valeur1 = carte.valeur1;
-		valeur2 = carte.valeur2;
-		duree1 = carte.duree1;
-		duree2 = carte.duree2;
+		element = carte.element;
 		rarete = carte.rarete;
 
+		effet1 = carte.effet1;
+		valeur1 = carte.valeur1;
+		duree1 = carte.duree1;
+
+		effet2 = carte.effet2;
+		valeur2 = carte.valeur2;
+		duree2 = carte.duree2;
+
+		effet3 = carte.effet3;
+		valeur3 = carte.valeur3;
+		duree3 = carte.duree3;
+
+		effet4 = carte.effet4;
+		valeur4 = carte.valeur4;
+		duree4 = carte.duree4;
+
 		t_Nom.text = _name;
-		t_Type.text = type;
+		t_Type.text = type.ToString();
+		t_Classe.text = classe.ToString();
 		t_Rarete.text = rarete.ToString();
 		t_Effet1.text = effet1.ToString() + " : inflige " + valeur1 + " pts de degats sur " + duree1 + " tours.";
 		t_Effet2.text = effet2.ToString() + " : inflige " + valeur2 + " pts de degats sur " + duree2 + " tours.";
-		t_Classe.text = classe;
     }
 
 
@@ -129,7 +135,7 @@ public class _CartesManager : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			scriptSystem.Player_Attack(valeur1, price, true, EnumPerso.elements.Air, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+			scriptSystem.Player_Attack(valeur1, cost, true, EnumPerso.elements.Air, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
 		}
         else
         {

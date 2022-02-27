@@ -12,7 +12,7 @@ public class EnumPerso : MonoBehaviour
         Ranger,
         Necromancien,
         Paladin,
-        BOSS
+        Aucune
     }
 
     public enum races
@@ -31,6 +31,22 @@ public class EnumPerso : MonoBehaviour
         Feu,
         Eau,
         Terre,
-        Air
+        Air,
+        Aucun
+    }
+
+    public enum types
+    {
+        Sort,
+        Objet,
+        Evénement,
+        Invocation
+    }
+
+    public enum rarities
+    {
+        Commun,
+        Rare,
+        Légendaire,
     }
 }
