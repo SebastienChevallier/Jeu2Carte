@@ -72,6 +72,10 @@ public class _SystemManager : MonoBehaviour
         tmp_defmagEnemy.text = scriptPersoTarget.defMag.ToString();
         tmp_vitesseEnemy.text = scriptPersoTarget.vitesse.ToString();
         tmp_tauxccEnemy.text = (scriptPersoTarget.tauxCC * 100).ToString() + " %";
+
+        pvBarMax.fillAmount = 1 - (previsuMaxPV / scriptPersoTarget.basePV);
+        pvBarMin.fillAmount = 1 - (previsuMinPV / scriptPersoTarget.basePV);
+        manaBarPrevisu.fillAmount = 1 - (previsuMana / scriptPersoAttacker.baseMana);
     }
 
     public void Attack (int power, int cost, int Att, int Def, float tauxCC) 

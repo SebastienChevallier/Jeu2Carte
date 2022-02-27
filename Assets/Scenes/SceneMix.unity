@@ -6355,7 +6355,7 @@ GameObject:
   - component: {fileID: 1332773238}
   - component: {fileID: 1332773237}
   m_Layer: 6
-  m_Name: Canva
+  m_Name: UI_cartes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -46,14 +46,18 @@ public class _CartesManager : MonoBehaviour
 	public int valeur2;
 	[HideInInspector]
 	public int duree2;
-	
+
+	public _SystemManager scriptSystem;
+
+	private Vector3 savePos;
+
 
 	public Camera carteCam;
 
 	// Start is called before the first frame update
 	void Start()
     {
-
+		scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
 		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
 		carteCam = GameObject.Find("CameraCarte").GetComponent<Camera>();
 
@@ -90,7 +94,7 @@ public class _CartesManager : MonoBehaviour
 		t_Classe.text = classe;
     }
 
-	private Vector3 savePos;
+	
     private void OnMouseDown()
     {
 		
@@ -124,7 +128,7 @@ public class _CartesManager : MonoBehaviour
 
 	}
 
-	public _SystemManager scriptSystem;
+	
 	private void OnMouseUp()
 	{
 		RaycastHit hit;
