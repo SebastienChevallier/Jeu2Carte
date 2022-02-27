@@ -14,7 +14,6 @@ public class _SystemManager : MonoBehaviour
     public float weakness = 2f;
     public float resistance = 0.5f;
     public float attackBarLoadSpeed = 0.07f;
-    public float cardCost = 2;
 
     [Header("Equipes")]
     public List<_PersonnagesManager> team = new List<_PersonnagesManager>();
@@ -45,7 +44,7 @@ public class _SystemManager : MonoBehaviour
     private bool playerPlaying = false, enemyPlaying = false;
     private bool endOfTurn = false;
 
-    private float minDegats, maxDegats, actualDegats;
+    private float minDegats, maxDegats, actualDegats, cardCost;
 
 
 
@@ -145,7 +144,7 @@ public class _SystemManager : MonoBehaviour
         if (!playerPlaying && !enemyPlaying)
             Load_AttackBar();
         else if (enemyPlaying)
-            Enemy_Attack(20, false, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
+            Enemy_Attack(20, 2, false, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
     }
 
     private void Load_AttackBar()
@@ -156,10 +155,10 @@ public class _SystemManager : MonoBehaviour
             if (perso.attackBar >= 100)
             {
                 Debug.Log("TOUR : " + perso._name);
-                perso.hasPlayed = true;
                 if (perso == team[0] || perso == team[1] || perso == team[2])
                 {
                     playerPlaying = true;
+                    perso.hasPlayed = true;
                     scriptPersoAttacker = perso;
                 }
                 else
@@ -173,7 +172,7 @@ public class _SystemManager : MonoBehaviour
 
     private bool End_Of_Turn()
     {
-        foreach (_PersonnagesManager perso in everybody)
+        foreach (_PersonnagesManager perso in team)
         {
             if (!perso.hasPlayed)
                 return false;
@@ -182,7 +181,7 @@ public class _SystemManager : MonoBehaviour
         return true;
     }
 
-    public void Player_Attack(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    private void Damage_Calculation(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
         float rand = Random.Range(minRand, maxRand);
         float checkCC = Random.Range(0.0f, 1.0f);
@@ -223,9 +222,20 @@ public class _SystemManager : MonoBehaviour
         }
     }
 
-    public void Enemy_Attack(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    public void Player_Attack(int power, int cost, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
-        Player_Attack(power, phys, element, attacker, target);
+        cardCost = cost;
+        cardPlayed = true;
+
+        Damage_Calculation(power, phys, element, attacker, target);
+        Load_Previsu();
+    }
+
+    public void Enemy_Attack(int power, int cost, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    {
+        cardCost = cost;
+
+        Damage_Calculation(power, phys, element, attacker, target);
         Inflict_Damage(attacker, target);
 
         enemyPlaying = false;
@@ -273,7 +283,7 @@ public class _SystemManager : MonoBehaviour
             Debug.Log("VICTOIRE !!!");
     }
 
-    public void Load_Previsu()
+    private void Load_Previsu()
     {        
         previsuMinPV = scriptPersoTarget.actualPV - minDegats;
         previsuMaxPV = scriptPersoTarget.actualPV - maxDegats;
@@ -289,14 +299,6 @@ public class _SystemManager : MonoBehaviour
         pvBarMin.fillAmount = 0;
         manaBarPrevisu.fillAmount = 0;
         cardPlayed = false;
-    }
-
-    public void OnClickTest()
-    {
-        cardPlayed = true;
-
-        Player_Attack(100, true, EnumPerso.elements.Feu, scriptPersoAttacker, scriptPersoTarget);
-        Load_Previsu();
     }
 
     public void OnClickValidate()

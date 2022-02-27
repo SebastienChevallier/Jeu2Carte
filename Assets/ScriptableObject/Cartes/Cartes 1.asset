@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33d50fddf441674d938d2bfdfb9b9af, type: 3}
   m_Name: Cartes 1
   m_EditorClassIdentifier: 
-  name: 
-  price: 0
+  _name: 
+  price: 5
   type: 
-  effet1: 1
+  rarete: 0
+  classe: 
+  image: {fileID: 0}
+  description: 
+  effet1: 0
+  valeur1: 50
+  duree1: 0
   effet2: 3
-  valeur1: 20
-  valeur2: 40
-  duree1: 50
-  duree2: 50
-  rarete: 80
+  valeur2: 0
+  duree2: 0

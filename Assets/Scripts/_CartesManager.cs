@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class _CartesManager : MonoBehaviour
@@ -123,7 +122,6 @@ public class _CartesManager : MonoBehaviour
 		transform.position = objPosition;		
 	}
 
-
 	private void OnMouseUp()
 	{
 		RaycastHit hit;
@@ -131,10 +129,7 @@ public class _CartesManager : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			scriptSystem.cardPlayed = true;
-			scriptSystem.Player_Attack(valeur1, true, EnumPerso.elements.Air, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
-			scriptSystem.Load_Previsu();
-			
+			scriptSystem.Player_Attack(valeur1, price, true, EnumPerso.elements.Air, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
 		}
         else
         {
