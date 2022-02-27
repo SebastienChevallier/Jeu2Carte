@@ -12,20 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
   m_Name: DarkJulo
   m_EditorClassIdentifier: 
-  _name: DarkJulo
-  classe: Boss
-  race: Nain
-  basePV: 300
-  actualPV: 300
-  baseMana: 40
-  actualMana: 40
+  _name: Dark Julo
+  classe: 6
+  race: 0
+  basePV: 450
+  actualPV: 450
+  baseMana: 20
+  actualMana: 20
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 3
-  attMag: 3
-  defPhys: 3
-  defMag: 3
-  vitesse: 23
+  attPhys: 12
+  attMag: 7
+  defPhys: 8
+  defMag: 6
+  vitesse: 30
   tauxCC: 0.2
+  weakness: 1
+  resistance: 0
   attackBar: 0
+  hasPlayed: 0
   capacite: 0

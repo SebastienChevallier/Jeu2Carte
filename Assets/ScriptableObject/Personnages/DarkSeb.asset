@@ -13,19 +13,22 @@ MonoBehaviour:
   m_Name: DarkSeb
   m_EditorClassIdentifier: 
   _name: Dark Seb
-  classe: Boss
-  race: Elfe noir
-  basePV: 400
-  actualPV: 400
+  classe: 0
+  race: 0
+  basePV: 370
+  actualPV: 370
   baseMana: 30
   actualMana: 30
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 25
-  attMag: 13
-  defPhys: 10
-  defMag: 7
-  vitesse: 20
+  attPhys: 10
+  attMag: 10
+  defPhys: 15
+  defMag: 15
+  vitesse: 34
   tauxCC: 0.15
+  weakness: 2
+  resistance: 3
   attackBar: 0
+  hasPlayed: 0
   capacite: 0

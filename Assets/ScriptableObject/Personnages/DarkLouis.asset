@@ -12,20 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20cd79be362d4a8409774af15583d8b4, type: 3}
   m_Name: DarkLouis
   m_EditorClassIdentifier: 
-  _name: DarkLouis
-  classe: Boss
-  race: Hobbit
-  basePV: 250
-  actualPV: 250
-  baseMana: 70
-  actualMana: 70
+  _name: Dark Louis
+  classe: 0
+  race: 0
+  basePV: 315
+  actualPV: 315
+  baseMana: 30
+  actualMana: 30
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 7
-  attMag: 7
-  defPhys: 7
-  defMag: 7
-  vitesse: 26
-  tauxCC: 70
+  attPhys: 5
+  attMag: 18
+  defPhys: 10
+  defMag: 10
+  vitesse: 25
+  tauxCC: 0.3
+  weakness: 0
+  resistance: 2
   attackBar: 0
+  hasPlayed: 0
   capacite: 0

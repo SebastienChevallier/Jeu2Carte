@@ -13,19 +13,22 @@ MonoBehaviour:
   m_Name: Tes
   m_EditorClassIdentifier: 
   _name: VITESSE
-  classe: Magicien
-  race: Humain
-  basePV: 100
-  actualPV: 100
+  classe: 0
+  race: 2
+  basePV: 150
+  actualPV: 150
   baseMana: 20
   actualMana: 20
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 2
-  attMag: 8
-  defPhys: 3
-  defMag: 5
-  vitesse: 32
-  tauxCC: 0.15
+  attPhys: 10
+  attMag: 10
+  defPhys: 10
+  defMag: 10
+  vitesse: 44
+  tauxCC: 0.3
+  weakness: 3
+  resistance: 2
   attackBar: 0
+  hasPlayed: 0
   capacite: 0

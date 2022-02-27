@@ -41,5 +41,4 @@ public class EnumCapacites : MonoBehaviour
     {
         Debug.Log("Capacite3 : " + Val1 + " " + Val2 + " " + duree);
     }
-
 }

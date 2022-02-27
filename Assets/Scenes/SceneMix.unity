@@ -376,7 +376,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 2, y: 0.1}
+  m_SizeDelta: {x: 2, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &44438832
 MonoBehaviour:
@@ -458,7 +458,7 @@ RectTransform:
   m_GameObject: {fileID: 46607338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 154105153}
   m_Father: {fileID: 224915941}
@@ -466,7 +466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.99998, y: 149}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &46607340
@@ -761,13 +761,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481263281aff52b4aa72e26e2d5d2ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persoRef: {fileID: 11400000, guid: c0e602be7d92b9f42a97bdcffaaecd51, type: 2}
   _name: 
-  classe: 
-  race: 
+  classe: 0
+  race: 0
   basePV: 0
   actualPV: 0
   baseMana: 0
   actualMana: 0
+  attackBar: 0
   fillAmountPV: 0
   fillAmountMana: 0
   attPhys: 0
@@ -776,13 +778,14 @@ MonoBehaviour:
   defMag: 0
   vitesse: 0
   tauxCC: 0
-  attackBar: 0
-  persoRef: {fileID: 11400000, guid: c0e602be7d92b9f42a97bdcffaaecd51, type: 2}
-  scriptCapacites: {fileID: 1549569669}
+  weakness: 0
+  resistance: 0
+  hasPlayed: 0
   capacite: 0
   valeur1: 0
   valeur2: 0
   duree: 0
+  scriptCapacites: {fileID: 1549569669}
 --- !u!136 &164940455
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -817,7 +820,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9eb8237c8a04f44a5281ad86ef0598, type: 2}
+  - {fileID: 2100000, guid: 7bba2194a0c03cc4e869a27f7d6ae63e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -909,13 +912,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481263281aff52b4aa72e26e2d5d2ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persoRef: {fileID: 11400000, guid: 34a4b1ba72f273b4cb84765d5971a72a, type: 2}
   _name: 
-  classe: 
-  race: 
+  classe: 0
+  race: 0
   basePV: 0
   actualPV: 0
   baseMana: 0
   actualMana: 0
+  attackBar: 0
   fillAmountPV: 0
   fillAmountMana: 0
   attPhys: 0
@@ -924,13 +929,14 @@ MonoBehaviour:
   defMag: 0
   vitesse: 0
   tauxCC: 0
-  attackBar: 0
-  persoRef: {fileID: 11400000, guid: 34a4b1ba72f273b4cb84765d5971a72a, type: 2}
-  scriptCapacites: {fileID: 1549569669}
+  weakness: 0
+  resistance: 0
+  hasPlayed: 0
   capacite: 0
   valeur1: 0
   valeur2: 0
   duree: 0
+  scriptCapacites: {fileID: 1549569669}
 --- !u!136 &169216750
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -965,7 +971,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9eb8237c8a04f44a5281ad86ef0598, type: 2}
+  - {fileID: 2100000, guid: f9a563dcfe8024c4a8ed7dfe64423b80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1152,7 +1158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dark Seb
+  m_text: XXX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1562,11 +1568,18 @@ MonoBehaviour:
   DCC: 2
   minRand: 0.9
   maxRand: 1.1
+  weakness: 2
+  resistance: 0.5
+  attackBarLoadSpeed: 0.07
+  cardCost: 2
   team:
   - {fileID: 164940454}
   - {fileID: 524446216}
   - {fileID: 1208692361}
-  enemyTeam: []
+  enemyTeam:
+  - {fileID: 169216749}
+  - {fileID: 490016124}
+  - {fileID: 1899271062}
   everybody: []
   scriptPersoAttacker: {fileID: 164940454}
   scriptPersoTarget: {fileID: 169216749}
@@ -2032,7 +2045,7 @@ RectTransform:
   m_GameObject: {fileID: 279973103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1196850783}
   m_Father: {fileID: 224915941}
@@ -2040,8 +2053,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: -121}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -121}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279973105
 MonoBehaviour:
@@ -2628,7 +2641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Seb
+  m_text: XXX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3016,13 +3029,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481263281aff52b4aa72e26e2d5d2ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persoRef: {fileID: 11400000, guid: f66dbc0115933ee459f8d48b5ed583af, type: 2}
   _name: 
-  classe: 
-  race: 
+  classe: 0
+  race: 0
   basePV: 0
   actualPV: 0
   baseMana: 0
   actualMana: 0
+  attackBar: 0
   fillAmountPV: 0
   fillAmountMana: 0
   attPhys: 0
@@ -3031,13 +3046,14 @@ MonoBehaviour:
   defMag: 0
   vitesse: 0
   tauxCC: 0
-  attackBar: 0
-  persoRef: {fileID: 11400000, guid: f66dbc0115933ee459f8d48b5ed583af, type: 2}
-  scriptCapacites: {fileID: 1549569669}
+  weakness: 0
+  resistance: 0
+  hasPlayed: 0
   capacite: 0
   valeur1: 0
   valeur2: 0
   duree: 0
+  scriptCapacites: {fileID: 1549569669}
 --- !u!136 &490016125
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3072,7 +3088,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9eb8237c8a04f44a5281ad86ef0598, type: 2}
+  - {fileID: 2100000, guid: f9a563dcfe8024c4a8ed7dfe64423b80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3249,13 +3265,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481263281aff52b4aa72e26e2d5d2ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persoRef: {fileID: 11400000, guid: 6a48a4621eaf1f840a482db866c23bba, type: 2}
   _name: 
-  classe: 
-  race: 
+  classe: 0
+  race: 0
   basePV: 0
   actualPV: 0
   baseMana: 0
   actualMana: 0
+  attackBar: 0
   fillAmountPV: 0
   fillAmountMana: 0
   attPhys: 0
@@ -3264,13 +3282,14 @@ MonoBehaviour:
   defMag: 0
   vitesse: 0
   tauxCC: 0
-  attackBar: 0
-  persoRef: {fileID: 11400000, guid: 6a48a4621eaf1f840a482db866c23bba, type: 2}
-  scriptCapacites: {fileID: 1549569669}
+  weakness: 0
+  resistance: 0
+  hasPlayed: 0
   capacite: 0
   valeur1: 0
   valeur2: 0
   duree: 0
+  scriptCapacites: {fileID: 1549569669}
 --- !u!136 &524446217
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3305,7 +3324,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9eb8237c8a04f44a5281ad86ef0598, type: 2}
+  - {fileID: 2100000, guid: 9bd40e7b06e42254a98e51ddcf3f5c73, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3631,7 +3650,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 2, y: 0.1}
+  m_SizeDelta: {x: 2, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &617046419
 MonoBehaviour:
@@ -3986,7 +4005,7 @@ RectTransform:
   m_GameObject: {fileID: 774146932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 857680996}
   m_Father: {fileID: 224915941}
@@ -3994,7 +4013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -198, y: 149}
+  m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &774146934
@@ -4428,7 +4447,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 2, y: 0.1}
+  m_SizeDelta: {x: 2, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836243454
 MonoBehaviour:
@@ -6609,8 +6628,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6695,7 +6714,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 2, y: 0.1}
+  m_SizeDelta: {x: 2, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1198973376
 MonoBehaviour:
@@ -6886,13 +6905,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481263281aff52b4aa72e26e2d5d2ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persoRef: {fileID: 11400000, guid: ba5acdc36b51267438300840bddb43ff, type: 2}
   _name: 
-  classe: 
-  race: 
+  classe: 0
+  race: 0
   basePV: 0
   actualPV: 0
   baseMana: 0
   actualMana: 0
+  attackBar: 0
   fillAmountPV: 0
   fillAmountMana: 0
   attPhys: 0
@@ -6901,13 +6922,14 @@ MonoBehaviour:
   defMag: 0
   vitesse: 0
   tauxCC: 0
-  attackBar: 0
-  persoRef: {fileID: 11400000, guid: ba5acdc36b51267438300840bddb43ff, type: 2}
-  scriptCapacites: {fileID: 1549569669}
+  weakness: 0
+  resistance: 0
+  hasPlayed: 0
   capacite: 0
   valeur1: 0
   valeur2: 0
   duree: 0
+  scriptCapacites: {fileID: 1549569669}
 --- !u!136 &1208692362
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7982,7 +8004,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 2, y: 0.1}
+  m_SizeDelta: {x: 2, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427031156
 MonoBehaviour:
@@ -9546,13 +9568,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481263281aff52b4aa72e26e2d5d2ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persoRef: {fileID: 11400000, guid: 20d7ecb6bca2a4447a4f546c622af202, type: 2}
   _name: 
-  classe: 
-  race: 
+  classe: 0
+  race: 0
   basePV: 0
   actualPV: 0
   baseMana: 0
   actualMana: 0
+  attackBar: 0
   fillAmountPV: 0
   fillAmountMana: 0
   attPhys: 0
@@ -9561,13 +9585,14 @@ MonoBehaviour:
   defMag: 0
   vitesse: 0
   tauxCC: 0
-  attackBar: 0
-  persoRef: {fileID: 11400000, guid: 20d7ecb6bca2a4447a4f546c622af202, type: 2}
-  scriptCapacites: {fileID: 1549569669}
+  weakness: 0
+  resistance: 0
+  hasPlayed: 0
   capacite: 0
   valeur1: 0
   valeur2: 0
   duree: 0
+  scriptCapacites: {fileID: 1549569669}
 --- !u!136 &1899271063
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9602,7 +9627,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9eb8237c8a04f44a5281ad86ef0598, type: 2}
+  - {fileID: 2100000, guid: f9a563dcfe8024c4a8ed7dfe64423b80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10468,7 +10493,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 2, y: 0.1}
+  m_SizeDelta: {x: 2, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107955674
 MonoBehaviour:

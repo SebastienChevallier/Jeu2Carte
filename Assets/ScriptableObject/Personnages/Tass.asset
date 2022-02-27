@@ -13,19 +13,22 @@ MonoBehaviour:
   m_Name: Tass
   m_EditorClassIdentifier: 
   _name: BRUTASSE
-  classe: Barbare
-  race: Orc
+  classe: 1
+  race: 5
   basePV: 200
   actualPV: 200
-  baseMana: 234
-  actualMana: 234
+  baseMana: 10
+  actualMana: 10
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 17
+  attPhys: 20
   attMag: 2
-  defPhys: 3
-  defMag: 2
-  vitesse: 40
+  defPhys: 10
+  defMag: 4
+  vitesse: 20
   tauxCC: 0.15
+  weakness: 2
+  resistance: 1
   attackBar: 0
+  hasPlayed: 0
   capacite: 0

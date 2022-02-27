@@ -13,19 +13,22 @@ MonoBehaviour:
   m_Name: Toce
   m_EditorClassIdentifier: 
   _name: KRATOSS
-  classe: Voleur
-  race: Gnome
-  basePV: 120
-  actualPV: 120
-  baseMana: 10
-  actualMana: 10
+  classe: 2
+  race: 0
+  basePV: 190
+  actualPV: 190
+  baseMana: 70
+  actualMana: 70
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 6
-  attMag: 3
-  defPhys: 2
-  defMag: 3
-  vitesse: 29
-  tauxCC: 0.3
+  attPhys: 4
+  attMag: 19
+  defPhys: 8
+  defMag: 9
+  vitesse: 32
+  tauxCC: 0.15
+  weakness: 1
+  resistance: 0
   attackBar: 0
+  hasPlayed: 0
   capacite: 0

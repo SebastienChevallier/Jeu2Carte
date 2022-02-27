@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class _PersonnagesManager : MonoBehaviour
 {
-   
-   [Header("Infos")]
+    [Header("Référence")]
+    public SO_Personnages persoRef;
+
+    [Header("Infos")]
 	public string _name;
-    public string classe;
-    public string race;
+    public EnumPerso.classes classe;
+    public EnumPerso.races race;
 
     [Header("Stats")]
     public int basePV;
     public int actualPV;
     public int baseMana;
     public int actualMana;
+
+    public float attackBar;
 
     [HideInInspector]
     public float fillAmountPV, fillAmountMana;
@@ -26,21 +30,23 @@ public class _PersonnagesManager : MonoBehaviour
     public int vitesse;
     public float tauxCC;
 
+    public EnumPerso.elements weakness;
+    public EnumPerso.elements resistance;
+
     [HideInInspector]
-    public float attackBar;
+    public bool hasPlayed;
 
-    [Header("Scripts Refs")]
-	public SO_Personnages persoRef;
-	public EnumCapacites scriptCapacites;
-
-	[Header("Value Skill : ")]
+	[Header("Capacités")]
 	public EnumCapacites.enumCapacite capacite;
 	public int valeur1;
     public int valeur2;
     public int duree;
 
+    [HideInInspector]
+    public EnumCapacites scriptCapacites;
 
-	void Start()
+
+    void Start()
     {
 		scriptCapacites = GameObject.Find("GAMEMANAGER").GetComponent<EnumCapacites>();
 		CreateCharacter(persoRef);
@@ -60,6 +66,8 @@ public class _PersonnagesManager : MonoBehaviour
         actualMana = personnage.actualMana;
         fillAmountMana = personnage.fillAmountMana;
 
+        attackBar = personnage.attackBar;
+
         attPhys = personnage.attPhys;
         attMag = personnage.attMag;
         defPhys = personnage.defPhys;
@@ -67,7 +75,10 @@ public class _PersonnagesManager : MonoBehaviour
         vitesse = personnage.vitesse;
         tauxCC = personnage.tauxCC;
 
-        attackBar = personnage.attackBar;
+        weakness = personnage.weakness;
+        resistance = personnage.resistance;
+
+        hasPlayed = personnage.hasPlayed;
 
         capacite = personnage.capacite;	
     }
