@@ -22,8 +22,10 @@ public class _SystemManager : MonoBehaviour
 
     [Header("Equipes")]
     public GameObject prefab_Perso;
+
     public List<SO_Personnages> SO_team = new List<SO_Personnages>();
     public List<SO_Personnages> SO_enemyTeam = new List<SO_Personnages>();
+
     private List<_PersonnagesManager> team = new List<_PersonnagesManager>();
     private List<_PersonnagesManager> enemyTeam = new List<_PersonnagesManager>();
     private List<_PersonnagesManager> everybody = new List<_PersonnagesManager>();
