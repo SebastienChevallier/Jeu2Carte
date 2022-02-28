@@ -139,13 +139,15 @@ public class _SystemManager : MonoBehaviour
         {
             var prefPerso = Instantiate(prefab_Perso, zoneAllyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneAllyDef);
             prefPerso.transform.localRotation = Quaternion.Euler(0, 182, 0);
-            distance += distInterPerso;
-            prefPerso.GetComponent<_PersonnagesManager>().persoRef = perso;
+            if (perso.zoneOffensive)
+                prefPerso.transform.position += new Vector3(distanceBetweenZones, 0, 0);
             if (perso.vitesse > persoStart)
             {
                 persoStart = perso.vitesse;
                 scriptPersoAttacker = prefPerso.GetComponent<_PersonnagesManager>();
             }
+            distance += distInterPerso;
+            prefPerso.GetComponent<_PersonnagesManager>().persoRef = perso;
             team.Add(prefPerso.GetComponent<_PersonnagesManager>());
             everybody.Add(prefPerso.GetComponent<_PersonnagesManager>());
         }
@@ -162,13 +164,15 @@ public class _SystemManager : MonoBehaviour
         {
             var prefPerso = Instantiate(prefab_Perso, zoneEnemyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneEnemyDef);
             prefPerso.transform.localRotation = Quaternion.Euler(0, 182, 0);
-            distance+= distInterPerso;
-            prefPerso.GetComponent<_PersonnagesManager>().persoRef = enemy;
+            if (enemy.zoneOffensive)
+                prefPerso.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
             if (enemy.vitesse > enemyStart)
             {
                 enemyStart = enemy.vitesse;
                 scriptPersoTarget = prefPerso.GetComponent<_PersonnagesManager>();
             }
+            distance += distInterPerso;
+            prefPerso.GetComponent<_PersonnagesManager>().persoRef = enemy;
             enemyTeam.Add(prefPerso.GetComponent<_PersonnagesManager>());
             everybody.Add(prefPerso.GetComponent<_PersonnagesManager>());
         }
