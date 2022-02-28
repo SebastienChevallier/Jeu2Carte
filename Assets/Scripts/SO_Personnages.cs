@@ -31,9 +31,10 @@ public class SO_Personnages : ScriptableObject
     public EnumPerso.elements weakness;
     public EnumPerso.elements resistance;
 
+    public bool zoneOffensive;
+
     [HideInInspector]
     public bool hasPlayed;
-
 
     [Header("Capacités")]
     public EnumCapacites.enumCapacite capacite;

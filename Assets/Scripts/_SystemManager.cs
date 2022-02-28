@@ -6,13 +6,17 @@ using TMPro;
 
 public class _SystemManager : MonoBehaviour
 {
-    [Header("Param�tres de combat")]
+    [Header("Parametres de combat")]
     public float modifier = 1f;
     public float DCC = 2;
     public float minRand = 0.9f;
     public float maxRand = 1.1f;
     public float weakness = 2f;
     public float resistance = 0.5f;
+    public float attackerOffensive = 1.1f;
+    public float attackerDefensive = 0.9f;
+    public float targetOffensive = 1.2f;
+    public float targetDefensive = 0.8f;
     public float attackBarLoadSpeed = 0.07f;
 
     [Header("Equipes")]
@@ -23,26 +27,19 @@ public class _SystemManager : MonoBehaviour
     [HideInInspector]
     public _PersonnagesManager scriptPersoAttacker, scriptPersoTarget;
 
-    [Header("UI")]
-    public Image pvBarAlly;
-    public Image pvBarEnemy;
-    public Image pvBarMin;
-    public Image pvBarMax;
-    public Image manaBarAlly;
-    public Image manaBarEnemy;
-    public Image manaBarPrevisu;
-
-    private float previsuMaxPV, previsuMinPV, previsuMana;
+    //UI
+    private Image pvBarAlly, manaBarAlly, pvBarEnemy, manaBarEnemy;
+    private Image pvBarMin, pvBarMax, manaBarPrevisu;
 
     private TextMeshProUGUI tmp_name, tmp_pv, tmp_mana, tmp_attphys, tmp_attmag, tmp_defphys, tmp_defmag, tmp_vitesse, tmp_tauxcc;
     private TextMeshProUGUI tmp_nameEnemy, tmp_pvEnemy, tmp_manaEnemy, tmp_attphysEnemy, tmp_attmagEnemy, tmp_defphysEnemy, tmp_defmagEnemy, tmp_vitesseEnemy, tmp_tauxccEnemy;
 
-    //Battle
-    private int persoStart = 0, enemyStart = 0;
+    private float previsuMaxPV, previsuMinPV, previsuMana;
 
-    public bool cardPlayed = false;
+    //Battle
+    private bool cardPlayed = false, basicAttack = false;
     private bool playerPlaying = false, enemyPlaying = false;
-    private bool endOfTurn = false;
+    private bool endOfTurn = false, endOfBattle = false;
 
     private float minDegats, maxDegats, actualDegats, cardCost;
 
@@ -87,6 +84,14 @@ public class _SystemManager : MonoBehaviour
         tmp_defmagEnemy = GameObject.Find("PrevisuEnemy").transform.GetChild(6).GetChild(0).GetComponent<TextMeshProUGUI>();
         tmp_vitesseEnemy = GameObject.Find("PrevisuEnemy").transform.GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>();
         tmp_tauxccEnemy = GameObject.Find("PrevisuEnemy").transform.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        pvBarAlly = GameObject.Find("PrevisuPlayer").transform.GetChild(1).GetChild(1).GetComponent<Image>();
+        manaBarAlly = GameObject.Find("PrevisuPlayer").transform.GetChild(2).GetChild(1).GetComponent<Image>();
+        pvBarEnemy = GameObject.Find("PrevisuEnemy").transform.GetChild(1).GetChild(1).GetComponent<Image>();
+        manaBarEnemy = GameObject.Find("PrevisuEnemy").transform.GetChild(2).GetChild(1).GetComponent<Image>();
+        pvBarMax = GameObject.Find("PrevisuEnemy").transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>();
+        pvBarMin = GameObject.Find("PrevisuEnemy").transform.GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetComponent<Image>();
+        manaBarPrevisu = GameObject.Find("PrevisuPlayer").transform.GetChild(2).GetChild(1).GetChild(0).GetComponent<Image>();
     }
 
     private void Set_HUD()
@@ -119,6 +124,8 @@ public class _SystemManager : MonoBehaviour
 
     private void Initialize_Battle()
     {
+        int persoStart = 0, enemyStart = 0;
+
         foreach (_PersonnagesManager perso in team)
         {
             everybody.Add(perso);
@@ -141,7 +148,7 @@ public class _SystemManager : MonoBehaviour
 
     private void Play()
     {
-        if (!playerPlaying && !enemyPlaying)
+        if (!playerPlaying && !enemyPlaying && !endOfBattle)
             Load_AttackBar();
         else if (enemyPlaying)
             Enemy_Attack(20, 2, false, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
@@ -154,8 +161,8 @@ public class _SystemManager : MonoBehaviour
             perso.attackBar += perso.vitesse * attackBarLoadSpeed;
             if (perso.attackBar >= 100)
             {
-                Debug.Log("TOUR : " + perso._name);
-                if (perso == team[0] || perso == team[1] || perso == team[2])
+                Debug.Log("TOUR DE : " + perso._name);
+                if (team.Contains(perso))
                 {
                     playerPlaying = true;
                     perso.hasPlayed = true;
@@ -214,6 +221,35 @@ public class _SystemManager : MonoBehaviour
             maxDegats *= resistance;
             actualDegats *= resistance;
         }
+        //Zones
+        if (attacker.zoneOffensive && target.zoneOffensive)
+        {
+            Debug.Log("OFFENSIF VS OFFENSIF");
+            minDegats *= attackerOffensive * targetOffensive;
+            maxDegats *= attackerOffensive * targetOffensive;
+            actualDegats *= attackerOffensive * targetOffensive;
+        }
+        else if (attacker.zoneOffensive && !target.zoneOffensive)
+        {
+            Debug.Log("OFFENSIF VS DEFENSIF");
+            minDegats *= attackerOffensive * targetDefensive;
+            maxDegats *= attackerOffensive * targetDefensive;
+            actualDegats *= attackerOffensive * targetDefensive;
+        }
+        else if (!attacker.zoneOffensive && target.zoneOffensive)
+        {
+            Debug.Log("DEFENSIF VS OFFENSIF");
+            minDegats *= attackerDefensive * targetOffensive;
+            maxDegats *= attackerDefensive * targetOffensive;
+            actualDegats *= attackerDefensive * targetOffensive;
+        }
+        else
+        {
+            Debug.Log("DEFENSIF VS DEFENSIF");
+            minDegats *= attackerDefensive * targetDefensive;
+            maxDegats *= attackerDefensive * targetDefensive;
+            actualDegats *= attackerDefensive * targetDefensive;
+        }
         //Crit
         if (checkCC <= attacker.tauxCC)
         {
@@ -251,12 +287,12 @@ public class _SystemManager : MonoBehaviour
         attacker.actualMana -= Mathf.RoundToInt(cardCost);
         attacker.fillAmountMana -= cardCost / attacker.baseMana;
         attacker.attackBar = 0;
-        Debug.Log(attacker._name + " a inflig� " + Mathf.RoundToInt(actualDegats) + " points de d�gats � " + target._name);
+        Debug.Log(attacker._name + " a inflige " + Mathf.RoundToInt(actualDegats) + " points de degats a " + target._name);
     }
 
     private void Death(_PersonnagesManager target)
     {
-        if (target == team[0] || target == team[1] || target == team[2])
+        if (team.Contains(target))
         {
             team.Remove(target);
             if (team.Count != 0)
@@ -278,13 +314,19 @@ public class _SystemManager : MonoBehaviour
     private void Win_Or_Lose()
     {
         if (team.Count == 0)
+        {
             Debug.Log("DEFAITE !!!");
+            endOfBattle = true;
+        }
         else if (enemyTeam.Count == 0)
+        {
             Debug.Log("VICTOIRE !!!");
+            endOfBattle = true;
+        }
     }
 
     private void Load_Previsu()
-    {        
+    {
         previsuMinPV = scriptPersoTarget.actualPV - minDegats;
         previsuMaxPV = scriptPersoTarget.actualPV - maxDegats;
         previsuMana = scriptPersoAttacker.actualMana - cardCost;
@@ -301,14 +343,28 @@ public class _SystemManager : MonoBehaviour
         cardPlayed = false;
     }
 
+    public void OnClickAttack()
+    {
+        Player_Attack(1, 0, true, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
+        basicAttack = true;
+    }
+
     public void OnClickValidate()
     {
         if (playerPlaying && cardPlayed && scriptPersoAttacker.actualMana >= cardCost)
         {
+            if (basicAttack)
+            {
+                //Mana recovery
+                scriptPersoAttacker.actualMana += scriptPersoAttacker.baseMana / 2;
+                if (scriptPersoAttacker.actualMana > scriptPersoAttacker.baseMana)
+                    scriptPersoAttacker.actualMana = scriptPersoAttacker.baseMana;
+                basicAttack = false;
+            }
+            cardPlayed = false;
             Inflict_Damage(scriptPersoAttacker, scriptPersoTarget);
             Cancel_Previsu();
             playerPlaying = false;
-            cardPlayed = false;
 
             //Death
             if (scriptPersoTarget.actualPV <= 0) Death(scriptPersoTarget);
@@ -318,7 +374,7 @@ public class _SystemManager : MonoBehaviour
             {
                 foreach (_PersonnagesManager perso in team)
                     perso.hasPlayed = false;
-                Debug.Log("NEW HAND :)");
+                Debug.Log("NOUVELLE MAIN :)");
             }
         }
     }

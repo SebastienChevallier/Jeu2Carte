@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class _PersonnagesManager : MonoBehaviour
 {
-    [Header("Référence")]
+    [Header("Rï¿½fï¿½rence")]
     public SO_Personnages persoRef;
 
     [Header("Infos")]
@@ -33,10 +34,12 @@ public class _PersonnagesManager : MonoBehaviour
     public EnumPerso.elements weakness;
     public EnumPerso.elements resistance;
 
+    public bool zoneOffensive;
+
     [HideInInspector]
     public bool hasPlayed;
 
-	[Header("Capacités")]
+    [Header("Capacitï¿½s")]
 	public EnumCapacites.enumCapacite capacite;
 	public int valeur1;
     public int valeur2;
@@ -45,11 +48,20 @@ public class _PersonnagesManager : MonoBehaviour
     [HideInInspector]
     public EnumCapacites scriptCapacites;
 
+    public Camera myCamera;
+    private Vector3 mOffset;
+    private float mZCoord;
+
+    public _SystemManager scriptSystem;
+
+
 
     void Start()
     {
 		scriptCapacites = GameObject.Find("GAMEMANAGER").GetComponent<EnumCapacites>();
 		CreateCharacter(persoRef);
+
+        mZCoord = myCamera.WorldToScreenPoint(transform.position).z;
     }
 
 	public void CreateCharacter(SO_Personnages personnage)
@@ -78,8 +90,35 @@ public class _PersonnagesManager : MonoBehaviour
         weakness = personnage.weakness;
         resistance = personnage.resistance;
 
+        zoneOffensive = personnage.zoneOffensive;
+
         hasPlayed = personnage.hasPlayed;
 
         capacite = personnage.capacite;	
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Offensive")
+            zoneOffensive = true;
+        else if (col.tag == "Defensive")
+            zoneOffensive = false;
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log(this);
+        if (tag == "Enemy")
+            scriptSystem.scriptPersoTarget = transform.gameObject.GetComponent<_PersonnagesManager>(); ;
+    }
+
+    void OnMouseDrag()
+    {
+        if (tag == "Ally")
+        {
+            Vector3 ScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mZCoord);
+            Vector3 NewWorldPosition = myCamera.ScreenToWorldPoint(ScreenPosition);
+            transform.position = NewWorldPosition;
+        }
     }
 }
