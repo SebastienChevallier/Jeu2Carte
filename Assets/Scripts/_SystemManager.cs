@@ -18,11 +18,15 @@ public class _SystemManager : MonoBehaviour
     public float targetOffensive = 1.2f;
     public float targetDefensive = 0.8f;
     public float attackBarLoadSpeed = 0.07f;
+    public float distanceBetweenZones = 5.3f;
 
     [Header("Equipes")]
-    public List<_PersonnagesManager> team = new List<_PersonnagesManager>();
-    public List<_PersonnagesManager> enemyTeam = new List<_PersonnagesManager>();
-    public List<_PersonnagesManager> everybody = new List<_PersonnagesManager>();
+    public GameObject prefab_Perso;
+    public List<SO_Personnages> SO_team = new List<SO_Personnages>();
+    public List<SO_Personnages> SO_enemyTeam = new List<SO_Personnages>();
+    private List<_PersonnagesManager> team = new List<_PersonnagesManager>();
+    private List<_PersonnagesManager> enemyTeam = new List<_PersonnagesManager>();
+    private List<_PersonnagesManager> everybody = new List<_PersonnagesManager>();
 
     [HideInInspector]
     public _PersonnagesManager scriptPersoAttacker, scriptPersoTarget;
@@ -37,7 +41,7 @@ public class _SystemManager : MonoBehaviour
     private float previsuMaxPV, previsuMinPV, previsuMana;
 
     //Battle
-    private bool cardPlayed = false, basicAttack = false;
+    private bool cardPlayed = false, switching = false;
     private bool playerPlaying = false, enemyPlaying = false;
     private bool endOfTurn = false, endOfBattle = false;
 
@@ -47,11 +51,12 @@ public class _SystemManager : MonoBehaviour
 
     void Start()
     {
+        //Load Battle
+        Load_Team_Positions();
+        Load_EnemyTeam_Positions();
+
         //UI
         Get_HUD();
-
-        //Initialize Battle
-        Initialize_Battle();
     }
 
     void FixedUpdate()
@@ -65,6 +70,7 @@ public class _SystemManager : MonoBehaviour
 
     private void Get_HUD()
     {
+        //Get UI
         tmp_name = GameObject.Find("PrevisuPlayer").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         tmp_pv = GameObject.Find("PrevisuPlayer").transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
         tmp_mana = GameObject.Find("PrevisuPlayer").transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -122,27 +128,49 @@ public class _SystemManager : MonoBehaviour
         manaBarEnemy.fillAmount = scriptPersoTarget.fillAmountMana;
     }
 
-    private void Initialize_Battle()
+    private void Load_Team_Positions()
     {
-        int persoStart = 0, enemyStart = 0;
+        Transform zoneAllyDef = GameObject.Find("ZoneDefensiveAlliee").transform;
+        float distInterPerso = zoneAllyDef.GetComponent<BoxCollider>().size.z / (SO_team.Count + 1);
+        float distance = distInterPerso;
+        int persoStart = 0;
 
-        foreach (_PersonnagesManager perso in team)
+        foreach (SO_Personnages perso in SO_team)
         {
-            everybody.Add(perso);
+            var prefPerso = Instantiate(prefab_Perso, zoneAllyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneAllyDef);
+            prefPerso.transform.localRotation = Quaternion.Euler(0, 182, 0);
+            distance += distInterPerso;
+            prefPerso.GetComponent<_PersonnagesManager>().persoRef = perso;
             if (perso.vitesse > persoStart)
             {
                 persoStart = perso.vitesse;
-                scriptPersoAttacker = perso;
+                scriptPersoAttacker = prefPerso.GetComponent<_PersonnagesManager>();
             }
+            team.Add(prefPerso.GetComponent<_PersonnagesManager>());
+            everybody.Add(prefPerso.GetComponent<_PersonnagesManager>());
         }
-        foreach (_PersonnagesManager enemy in enemyTeam)
+    }
+
+    private void Load_EnemyTeam_Positions()
+    {
+        Transform zoneEnemyDef = GameObject.Find("ZoneDefensiveEnnemie").transform;
+        float distInterPerso = zoneEnemyDef.GetComponent<BoxCollider>().size.z / (SO_enemyTeam.Count + 1);
+        float distance = distInterPerso;
+        int enemyStart = 0;
+
+        foreach (SO_Personnages enemy in SO_enemyTeam)
         {
-            everybody.Add(enemy);
+            var prefPerso = Instantiate(prefab_Perso, zoneEnemyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneEnemyDef);
+            prefPerso.transform.localRotation = Quaternion.Euler(0, 182, 0);
+            distance+= distInterPerso;
+            prefPerso.GetComponent<_PersonnagesManager>().persoRef = enemy;
             if (enemy.vitesse > enemyStart)
             {
                 enemyStart = enemy.vitesse;
-                scriptPersoTarget = enemy;
+                scriptPersoTarget = prefPerso.GetComponent<_PersonnagesManager>();
             }
+            enemyTeam.Add(prefPerso.GetComponent<_PersonnagesManager>());
+            everybody.Add(prefPerso.GetComponent<_PersonnagesManager>());
         }
     }
 
@@ -337,30 +365,38 @@ public class _SystemManager : MonoBehaviour
 
     private void Cancel_Previsu()
     {
+        if (scriptPersoAttacker.zoneOffensive && switching)
+            scriptPersoAttacker.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
+        else if (!scriptPersoAttacker.zoneOffensive && switching)
+            scriptPersoAttacker.transform.position += new Vector3(distanceBetweenZones, 0, 0);
         pvBarMax.fillAmount = 0;
         pvBarMin.fillAmount = 0;
         manaBarPrevisu.fillAmount = 0;
         cardPlayed = false;
+        switching = false;
     }
 
     public void OnClickAttack()
     {
         Player_Attack(1, 0, true, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
-        basicAttack = true;
+    }
+
+    public void OnClickSwitch()
+    {
+        if (scriptPersoAttacker.zoneOffensive && !switching)
+            scriptPersoAttacker.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
+        else if (!scriptPersoAttacker.zoneOffensive && !switching)
+            scriptPersoAttacker.transform.position += new Vector3(distanceBetweenZones, 0, 0);
+        cardPlayed = true;
+        switching = true;
     }
 
     public void OnClickValidate()
     {
         if (playerPlaying && cardPlayed && scriptPersoAttacker.actualMana >= cardCost)
         {
-            if (basicAttack)
-            {
-                //Mana recovery
-                scriptPersoAttacker.actualMana += scriptPersoAttacker.baseMana / 2;
-                if (scriptPersoAttacker.actualMana > scriptPersoAttacker.baseMana)
-                    scriptPersoAttacker.actualMana = scriptPersoAttacker.baseMana;
-                basicAttack = false;
-            }
+            if (switching)
+                switching = false;
             cardPlayed = false;
             Inflict_Damage(scriptPersoAttacker, scriptPersoTarget);
             Cancel_Previsu();

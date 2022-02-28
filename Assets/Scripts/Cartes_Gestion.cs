@@ -15,6 +15,8 @@ public class Cartes_Gestion : MonoBehaviour
     private void Start()
     {
         container = GameObject.Find("Container");
+
+        Load_Hand();
     }
 
     private void Update()

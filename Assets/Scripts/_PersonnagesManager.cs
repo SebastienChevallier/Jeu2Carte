@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class _PersonnagesManager : MonoBehaviour
 {
-    [Header("R�f�rence")]
+    [Header("Reference")]
     public SO_Personnages persoRef;
 
     [Header("Infos")]
@@ -21,7 +20,6 @@ public class _PersonnagesManager : MonoBehaviour
 
     public float attackBar;
 
-    [HideInInspector]
     public float fillAmountPV, fillAmountMana;
 
     public int attPhys;
@@ -31,15 +29,14 @@ public class _PersonnagesManager : MonoBehaviour
     public int vitesse;
     public float tauxCC;
 
+    public bool zoneOffensive;
+
     public EnumPerso.elements weakness;
     public EnumPerso.elements resistance;
 
-    public bool zoneOffensive;
-
-    [HideInInspector]
     public bool hasPlayed;
 
-    [Header("Capacit�s")]
+    [Header("Capacites")]
 	public EnumCapacites.enumCapacite capacite;
 	public int valeur1;
     public int valeur2;
@@ -48,20 +45,19 @@ public class _PersonnagesManager : MonoBehaviour
     [HideInInspector]
     public EnumCapacites scriptCapacites;
 
-    public Camera myCamera;
-    private Vector3 mOffset;
-    private float mZCoord;
-
-    public _SystemManager scriptSystem;
+    //Script
+    private _PersonnagesManager thisScript;
+    private _SystemManager scriptSystem;
 
 
 
     void Start()
     {
 		scriptCapacites = GameObject.Find("GAMEMANAGER").GetComponent<EnumCapacites>();
-		CreateCharacter(persoRef);
+        scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
+        thisScript = transform.gameObject.GetComponent<_PersonnagesManager>();
 
-        mZCoord = myCamera.WorldToScreenPoint(transform.position).z;
+        CreateCharacter(persoRef);
     }
 
 	public void CreateCharacter(SO_Personnages personnage)
@@ -107,18 +103,7 @@ public class _PersonnagesManager : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log(this);
         if (tag == "Enemy")
-            scriptSystem.scriptPersoTarget = transform.gameObject.GetComponent<_PersonnagesManager>(); ;
-    }
-
-    void OnMouseDrag()
-    {
-        if (tag == "Ally")
-        {
-            Vector3 ScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mZCoord);
-            Vector3 NewWorldPosition = myCamera.ScreenToWorldPoint(ScreenPosition);
-            transform.position = NewWorldPosition;
-        }
+            scriptSystem.scriptPersoTarget = thisScript;
     }
 }

@@ -9,7 +9,8 @@ public class EnumEffets : MonoBehaviour
         Attaque,
         Defense,
         Brule,
-        Poison
+        Poison,
+        Aucun
     }
 
     public void DoEffect(enumEffets effet, int Val, int duree, EnumPerso.rarities rarete, _PersonnagesManager target)
@@ -17,19 +18,16 @@ public class EnumEffets : MonoBehaviour
         switch (effet)
         {
             case enumEffets.Attaque:
-                //Debug.Log("Attaque : " + Val + " " + duree + " " + rarete);
                 break;
             case enumEffets.Defense:
-                //Debug.Log("Defense : " + Val + " " + duree + " " + rarete);
                 break;
             case enumEffets.Brule:
-                //Debug.Log("Brule : " + Val + " " + duree + " " + rarete);
                 break;
             case enumEffets.Poison:
-                //Debug.Log("Poison : " + Val + " " + duree + " " + rarete);
+                break;
+            case enumEffets.Aucun:
                 break;
             default:
-                //Debug.Log("Incorrect intelligence level.");
                 break;
         }
     }
@@ -52,5 +50,10 @@ public class EnumEffets : MonoBehaviour
     public void Poison(int Val1, int Val2, int duree1, int duree2, int rarete)
     {
         Debug.Log("Poison " + Val1 + " " + Val2 + " " + duree1 + " " + duree2 + " " + rarete);
+    }
+
+    public void Aucun(int Val1, int Val2, int duree1, int duree2, int rarete)
+    {
+        Debug.Log("Aucun " + Val1 + " " + Val2 + " " + duree1 + " " + duree2 + " " + rarete);
     }
 }

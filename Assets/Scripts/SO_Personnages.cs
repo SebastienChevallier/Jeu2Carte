@@ -16,6 +16,7 @@ public class SO_Personnages : ScriptableObject
     public int baseMana;
     public int actualMana;
 
+    [HideInInspector]
     public float attackBar;
 
     [HideInInspector]

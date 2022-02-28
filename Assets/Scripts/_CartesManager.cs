@@ -98,17 +98,6 @@ public class _CartesManager : MonoBehaviour
 		t_Effet2.text = effet2.ToString() + " : inflige " + valeur2 + " pts de degats sur " + duree2 + " tours.";
     }
 
-
-    private void OnMouseDown()
-    {
-		
-	}
-
-    private void OnMouseOver()
-    {
-		
-	}
-
     private void OnMouseExit()
     {
 		transform.localScale = new Vector3(1, 1, 1);
@@ -116,7 +105,7 @@ public class _CartesManager : MonoBehaviour
 
     private void OnMouseEnter()
     {
-		transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+		transform.localScale = new Vector3(1.5f ,1.5f ,1.5f);
     }
 
     private void OnMouseDrag()

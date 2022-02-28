@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33d50fddf441674d938d2bfdfb9b9af, type: 3}
+  m_Name: BouleDeFeu
+  m_EditorClassIdentifier: 
+  _name: Boule de feu
+  image: {fileID: 0}
+  cost: 3
+  type: 0
+  classe: 2
+  element: 0
+  rarete: 1
+  effet1: 0
+  valeur1: 50
+  duree1: 1
+  effet2: 2
+  valeur2: 0
+  duree2: 3
+  effet3: 4
+  valeur3: 0
+  duree3: 0
+  effet4: 4
+  valeur4: 0
+  duree4: 0
