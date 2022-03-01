@@ -19,6 +19,7 @@ MonoBehaviour:
   actualPV: 150
   baseMana: 20
   actualMana: 20
+  attackBar: 0
   fillAmountPV: 1
   fillAmountMana: 1
   attPhys: 10
@@ -29,6 +30,6 @@ MonoBehaviour:
   tauxCC: 0.3
   weakness: 3
   resistance: 2
-  attackBar: 0
+  zoneOffensive: 0
   hasPlayed: 0
   capacite: 0

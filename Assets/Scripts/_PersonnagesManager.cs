@@ -93,14 +93,6 @@ public class _PersonnagesManager : MonoBehaviour
         capacite = personnage.capacite;	
     }
 
-    private void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Offensive")
-            zoneOffensive = true;
-        else if (col.tag == "Defensive")
-            zoneOffensive = false;
-    }
-
     void OnMouseDown()
     {
         if (tag == "Enemy")

@@ -13,8 +13,8 @@ public class _SystemManager : MonoBehaviour
     public float maxRand = 1.1f;
     public float weakness = 2f;
     public float resistance = 0.5f;
-    public float attackerOffensive = 1.1f;
-    public float attackerDefensive = 0.9f;
+    public float attackerOffensive = 1.2f;
+    public float attackerDefensive = 0.8f;
     public float targetOffensive = 1.2f;
     public float targetDefensive = 0.8f;
     public float attackBarLoadSpeed = 0.07f;
@@ -43,19 +43,21 @@ public class _SystemManager : MonoBehaviour
     private float previsuMaxPV, previsuMinPV, previsuMana;
 
     //Battle
-    private bool cardPlayed = false, switching = false;
+    private bool cardPlayed = false, switching = false, basicAttack = false;
     private bool playerPlaying = false, enemyPlaying = false;
     private bool endOfTurn = false, endOfBattle = false;
 
     private float minDegats, maxDegats, actualDegats, cardCost;
+
+    public _CartesManager card;
 
 
 
     void Start()
     {
         //Load Battle
-        Load_Team_Positions();
-        Load_EnemyTeam_Positions();
+        Get_Team();
+        Get_EnemyTeam();
 
         //UI
         Get_HUD();
@@ -130,7 +132,7 @@ public class _SystemManager : MonoBehaviour
         manaBarEnemy.fillAmount = scriptPersoTarget.fillAmountMana;
     }
 
-    private void Load_Team_Positions()
+    private void Get_Team()
     {
         Transform zoneAllyDef = GameObject.Find("ZoneDefensiveAlliee").transform;
         float distInterPerso = zoneAllyDef.GetComponent<BoxCollider>().size.z / (SO_team.Count + 1);
@@ -155,7 +157,7 @@ public class _SystemManager : MonoBehaviour
         }
     }
 
-    private void Load_EnemyTeam_Positions()
+    private void Get_EnemyTeam()
     {
         Transform zoneEnemyDef = GameObject.Find("ZoneDefensiveEnnemie").transform;
         float distInterPerso = zoneEnemyDef.GetComponent<BoxCollider>().size.z / (SO_enemyTeam.Count + 1);
@@ -182,10 +184,21 @@ public class _SystemManager : MonoBehaviour
 
     private void Play()
     {
+        float rand;
+
         if (!playerPlaying && !enemyPlaying && !endOfBattle)
             Load_AttackBar();
+        else if (playerPlaying)
+            Get_PlayedCard();
         else if (enemyPlaying)
-            Enemy_Attack(20, 2, false, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
+        {
+            rand = Random.Range(0f, 1f);
+            Debug.Log(rand);
+            if (rand <= 0.3f)
+                Enemy_Switch();
+            else
+                Enemy_Attack(20, 2, false, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
+        }
     }
 
     private void Load_AttackBar()
@@ -209,6 +222,11 @@ public class _SystemManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Get_PlayedCard()
+    {
+        card = _CartesManager.cardPlayed;
     }
 
     private bool End_Of_Turn()
@@ -345,6 +363,23 @@ public class _SystemManager : MonoBehaviour
         Win_Or_Lose();
     }
 
+    private void Enemy_Switch()
+    {
+        if (!scriptPersoTarget.zoneOffensive && !switching)
+        {
+            scriptPersoTarget.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
+            scriptPersoTarget.zoneOffensive = true;
+        }
+        else if (scriptPersoTarget.zoneOffensive && !switching)
+        {
+            scriptPersoTarget.transform.position += new Vector3(distanceBetweenZones, 0, 0);
+            scriptPersoTarget.zoneOffensive = false;
+        }
+        switching = true;
+        enemyPlaying = false;
+        Debug.Log(scriptPersoTarget._name + " a switch !");
+    }
+
     private void Win_Or_Lose()
     {
         if (team.Count == 0)
@@ -361,9 +396,9 @@ public class _SystemManager : MonoBehaviour
 
     private void Load_Previsu()
     {
-        previsuMinPV = scriptPersoTarget.actualPV - minDegats;
-        previsuMaxPV = scriptPersoTarget.actualPV - maxDegats;
-        previsuMana = scriptPersoAttacker.actualMana - cardCost;
+        previsuMinPV = scriptPersoTarget.actualPV - Mathf.RoundToInt(minDegats);
+        previsuMaxPV = scriptPersoTarget.actualPV - Mathf.RoundToInt(maxDegats);
+        previsuMana = scriptPersoAttacker.actualMana - Mathf.RoundToInt(cardCost);
         pvBarMax.fillAmount = 1 - (previsuMaxPV / scriptPersoTarget.basePV);
         pvBarMin.fillAmount = 1 - (previsuMinPV / scriptPersoTarget.basePV);
         manaBarPrevisu.fillAmount = 1 - (previsuMana / scriptPersoAttacker.baseMana);
@@ -371,10 +406,7 @@ public class _SystemManager : MonoBehaviour
 
     private void Cancel_Previsu()
     {
-        if (scriptPersoAttacker.zoneOffensive && switching)
-            scriptPersoAttacker.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
-        else if (!scriptPersoAttacker.zoneOffensive && switching)
-            scriptPersoAttacker.transform.position += new Vector3(distanceBetweenZones, 0, 0);
+        cardCost = 0;
         pvBarMax.fillAmount = 0;
         pvBarMin.fillAmount = 0;
         manaBarPrevisu.fillAmount = 0;
@@ -385,26 +417,43 @@ public class _SystemManager : MonoBehaviour
     public void OnClickAttack()
     {
         Player_Attack(1, 0, true, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
+        basicAttack = true;
     }
 
     public void OnClickSwitch()
     {
-        if (scriptPersoAttacker.zoneOffensive && !switching)
-            scriptPersoAttacker.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
-        else if (!scriptPersoAttacker.zoneOffensive && !switching)
+        if (!scriptPersoAttacker.zoneOffensive && !switching)
+        {
             scriptPersoAttacker.transform.position += new Vector3(distanceBetweenZones, 0, 0);
-        cardPlayed = true;
+            scriptPersoAttacker.zoneOffensive = true;
+        }
+        else if (scriptPersoAttacker.zoneOffensive && !switching)
+        {
+            scriptPersoAttacker.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
+            scriptPersoAttacker.zoneOffensive = false;
+        }
+        if (cardPlayed)
+        {
+            if (!basicAttack)
+                Damage_Calculation(card.valeur1, true, card.element, scriptPersoAttacker, scriptPersoTarget);
+            else
+                Damage_Calculation(1, true, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
+            Load_Previsu();
+        }
         switching = true;
+        Debug.Log(scriptPersoAttacker._name + " a switch !");
+        Debug.Log(switching);
+        Debug.Log(cardPlayed);
+        Debug.Log(scriptPersoAttacker.zoneOffensive);   
     }
 
     public void OnClickValidate()
     {
         if (playerPlaying && cardPlayed && scriptPersoAttacker.actualMana >= cardCost)
         {
-            if (switching)
-                switching = false;
-            cardPlayed = false;
             Inflict_Damage(scriptPersoAttacker, scriptPersoTarget);
+            cardPlayed = false;
+
             Cancel_Previsu();
             playerPlaying = false;
 
@@ -423,6 +472,17 @@ public class _SystemManager : MonoBehaviour
 
     public void OnClickCancel()
     {
+        if (!scriptPersoAttacker.zoneOffensive && switching)
+        {
+            scriptPersoAttacker.transform.position += new Vector3(distanceBetweenZones, 0, 0);
+            scriptPersoAttacker.zoneOffensive = true;
+        }
+        else if (scriptPersoAttacker.zoneOffensive && switching)
+        {
+            scriptPersoAttacker.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
+            scriptPersoAttacker.zoneOffensive = false;
+        }
+        switching = false;
         Cancel_Previsu();
     }
 }

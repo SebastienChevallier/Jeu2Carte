@@ -483,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73950160}
   m_Layer: 6
-  m_Name: Container
+  m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1259,6 +1259,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f66dbc0115933ee459f8d48b5ed583af, type: 2}
   scriptPersoAttacker: {fileID: 0}
   scriptPersoTarget: {fileID: 0}
+  card: {fileID: 0}
 --- !u!1 &228330928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,7 +1560,7 @@ Transform:
   m_LocalScale: {x: 36.458916, y: 4.510738, z: 1}
   m_Children: []
   m_Father: {fileID: 804857318}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &241173038
 MeshRenderer:
@@ -1773,8 +1774,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 3, z: 8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 3, z: 10}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!4 &279535495
 Transform:
   m_ObjectHideFlags: 0
@@ -3415,6 +3416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 73950160}
+  - {fileID: 1494702088}
   - {fileID: 241173036}
   m_Father: {fileID: 368471413}
   m_RootOrder: 0
@@ -4387,8 +4389,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 3, z: 8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 3, z: 10}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!1 &1067479129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,7 +5877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1219164280}
   m_Layer: 0
-  m_Name: ZoneDefensiveEnnemie
+  m_Name: ZoneEnemyMin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5889,7 +5891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219164279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1571727592}
@@ -6480,8 +6482,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 3, z: 8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 3, z: 10}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!4 &1412693473
 Transform:
   m_ObjectHideFlags: 0
@@ -6852,6 +6854,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475408245}
   m_CullTransparentMesh: 1
+--- !u!1 &1494702087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1494702088}
+  m_Layer: 6
+  m_Name: PlayedCard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1494702088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494702087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 804857318}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1543260934
 GameObject:
   m_ObjectHideFlags: 0
@@ -6994,10 +7026,10 @@ MonoBehaviour:
   cartes:
   - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
   - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
+  - {fileID: 11400000, guid: 24c50ca31dc37ac4f942f80400cc30ac, type: 2}
   - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
-  - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
-  - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
-  - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
+  - {fileID: 11400000, guid: 24c50ca31dc37ac4f942f80400cc30ac, type: 2}
+  - {fileID: 11400000, guid: 24c50ca31dc37ac4f942f80400cc30ac, type: 2}
   - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
   GO_Cartes: []
   prefab_Cartes: {fileID: 7959125869004830556, guid: d310eb819093d2146b04a1bad6ec7bcb, type: 3}
@@ -7152,8 +7184,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 3, z: 8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 3, z: 10}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!1 &1606172822
 GameObject:
   m_ObjectHideFlags: 0
@@ -7533,7 +7565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722113922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1412693473}

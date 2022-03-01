@@ -50,6 +50,9 @@ public class _CartesManager : MonoBehaviour
 	//UI
 	private Vector3 savePos;
 
+	//Battle
+	static public _CartesManager cardPlayed;
+
 
 
 	void Start()
@@ -121,10 +124,15 @@ public class _CartesManager : MonoBehaviour
 	{
 		RaycastHit hit;
 		Ray ray = carteCam.ScreenPointToRay(Input.mousePosition);
+		Transform played = GameObject.Find("PlayedCard").transform;
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			scriptSystem.Player_Attack(valeur1, cost, true, EnumPerso.elements.Air, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+			scriptSystem.Player_Attack(valeur1, cost, true, element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+			if (played.childCount != 0)
+				Destroy(played.GetChild(0).gameObject);
+			transform.parent = played;
+			cardPlayed = transform.gameObject.GetComponent<_CartesManager>();
 		}
         else
         {
