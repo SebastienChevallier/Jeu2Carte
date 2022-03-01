@@ -15,19 +15,19 @@ MonoBehaviour:
   _name: Dark Louis
   classe: 0
   race: 0
-  basePV: 315
-  actualPV: 315
-  baseMana: 30
-  actualMana: 30
+  basePV: 100
+  actualPV: 100
+  baseMana: 200
+  actualMana: 200
   attackBar: 0
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 5
-  attMag: 18
-  defPhys: 10
-  defMag: 10
-  vitesse: 25
-  tauxCC: 0.3
+  attPhys: 30
+  attMag: 30
+  defPhys: 30
+  defMag: 30
+  vitesse: 30
+  tauxCC: 0
   weakness: 0
   resistance: 2
   zoneOffensive: 1

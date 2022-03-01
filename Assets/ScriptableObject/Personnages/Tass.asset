@@ -22,11 +22,11 @@ MonoBehaviour:
   attackBar: 0
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 20
-  attMag: 2
-  defPhys: 10
-  defMag: 4
-  vitesse: 20
+  attPhys: 50
+  attMag: 34
+  defPhys: 32
+  defMag: 35
+  vitesse: 32
   tauxCC: 0.15
   weakness: 2
   resistance: 1

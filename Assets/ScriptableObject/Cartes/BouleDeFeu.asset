@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Boule de feu
   image: {fileID: 0}
-  cost: 3
+  cost: 10
   type: 0
+  category: 1
   classe: 2
   element: 0
   rarete: 1

@@ -11,9 +11,13 @@ public class SO_Personnages : ScriptableObject
     public EnumPerso.races race;
 
     [Header("Stats")]
+    [Range(0, 1000)]
     public int basePV;
+    [Range(0, 1000)]
     public int actualPV;
+    [Range(0, 200)]
     public int baseMana;
+    [Range(0, 200)]
     public int actualMana;
 
     [HideInInspector]
@@ -22,11 +26,17 @@ public class SO_Personnages : ScriptableObject
     [HideInInspector]
     public float fillAmountPV = 1, fillAmountMana = 1;
 
+    [Range(30, 50)]
     public int attPhys;
+    [Range(30, 50)]
     public int attMag;
+    [Range(30, 50)]
     public int defPhys;
+    [Range(30, 50)]
     public int defMag;
+    [Range(30, 50)]
     public int vitesse;
+    [Range(0f, 1f)]
     public float tauxCC;
 
     public EnumPerso.elements weakness;

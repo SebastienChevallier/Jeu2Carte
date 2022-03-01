@@ -63,7 +63,7 @@ public class _SystemManager : MonoBehaviour
         Get_HUD();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         //UI
         Set_HUD();
@@ -184,21 +184,12 @@ public class _SystemManager : MonoBehaviour
 
     private void Play()
     {
-        float rand;
-
         if (!playerPlaying && !enemyPlaying && !endOfBattle)
             Load_AttackBar();
         else if (playerPlaying)
             Get_PlayedCard();
         else if (enemyPlaying)
-        {
-            rand = Random.Range(0f, 1f);
-            Debug.Log(rand);
-            if (rand <= 0.3f)
-                Enemy_Switch();
-            else
-                Enemy_Attack(20, 2, false, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
-        }
+            Enemy_Attack(20, 2, EnumPerso.categories.Magique, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
     }
 
     private void Load_AttackBar()
@@ -240,33 +231,33 @@ public class _SystemManager : MonoBehaviour
         return true;
     }
 
-    private void Damage_Calculation(int power, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    private void Damage_Calculation(int power, EnumPerso.categories cat, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
         float rand = Random.Range(minRand, maxRand);
         float checkCC = Random.Range(0.0f, 1.0f);
 
-        //Damage Calculation
-        if (phys)
+        //Physical / Magical Damage Calculation
+        if (cat == EnumPerso.categories.Physique)
         {
             minDegats = (power * attacker.attPhys * modifier * minRand) / target.defPhys;
             maxDegats = (power * attacker.attPhys * modifier * maxRand) / target.defPhys;
             actualDegats = (power * attacker.attPhys * modifier * rand) / target.defPhys;
         }
-        else
+        else if (cat == EnumPerso.categories.Magique)
         {
             minDegats = (power * attacker.attMag * modifier * minRand) / target.defMag;
             maxDegats = (power * attacker.attMag * modifier * maxRand) / target.defMag;
             actualDegats = (power * attacker.attMag * modifier * rand) / target.defMag;
         }
         //Weakness / Resistance
-        if (element == target.weakness)
+        if (element == target.weakness && element != EnumPerso.elements.Aucun)
         {
             Debug.Log("SUPER EFFICACE !!!");
             minDegats *= weakness;
             maxDegats *= weakness;
             actualDegats *= weakness;
         }
-        else if (element == target.resistance)
+        else if (element == target.resistance && element != EnumPerso.elements.Aucun)
         {
             Debug.Log("PAS TRES EFFICACE !!!");
             minDegats *= resistance;
@@ -310,20 +301,20 @@ public class _SystemManager : MonoBehaviour
         }
     }
 
-    public void Player_Attack(int power, int cost, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    public void Player_Attack(int power, int cost, EnumPerso.categories cat, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
         cardCost = cost;
         cardPlayed = true;
 
-        Damage_Calculation(power, phys, element, attacker, target);
+        Damage_Calculation(power, cat, element, attacker, target);
         Load_Previsu();
     }
 
-    public void Enemy_Attack(int power, int cost, bool phys, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    public void Enemy_Attack(int power, int cost, EnumPerso.categories cat, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
         cardCost = cost;
 
-        Damage_Calculation(power, phys, element, attacker, target);
+        Damage_Calculation(power, cat, element, attacker, target);
         Inflict_Damage(attacker, target);
 
         enemyPlaying = false;
@@ -416,7 +407,7 @@ public class _SystemManager : MonoBehaviour
 
     public void OnClickAttack()
     {
-        Player_Attack(1, 0, true, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
+        Player_Attack(15, 0, EnumPerso.categories.Physique, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
         basicAttack = true;
     }
 
@@ -435,16 +426,13 @@ public class _SystemManager : MonoBehaviour
         if (cardPlayed)
         {
             if (!basicAttack)
-                Damage_Calculation(card.valeur1, true, card.element, scriptPersoAttacker, scriptPersoTarget);
+                Damage_Calculation(card.valeur1, card.category, card.element, scriptPersoAttacker, scriptPersoTarget);
             else
-                Damage_Calculation(1, true, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
+                Damage_Calculation(15, EnumPerso.categories.Physique, EnumPerso.elements.Aucun, scriptPersoAttacker, scriptPersoTarget);
             Load_Previsu();
         }
         switching = true;
-        Debug.Log(scriptPersoAttacker._name + " a switch !");
-        Debug.Log(switching);
-        Debug.Log(cardPlayed);
-        Debug.Log(scriptPersoAttacker.zoneOffensive);   
+        Debug.Log(scriptPersoAttacker._name + " a switch !");   
     }
 
     public void OnClickValidate()
@@ -455,6 +443,7 @@ public class _SystemManager : MonoBehaviour
             cardPlayed = false;
 
             Cancel_Previsu();
+            basicAttack = false;
             playerPlaying = false;
 
             //Death

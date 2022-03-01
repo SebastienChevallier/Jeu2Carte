@@ -19,16 +19,17 @@ MonoBehaviour:
   actualPV: 190
   baseMana: 70
   actualMana: 70
+  attackBar: 0
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 4
-  attMag: 19
-  defPhys: 8
-  defMag: 9
+  attPhys: 50
+  attMag: 32
+  defPhys: 31
+  defMag: 32
   vitesse: 32
   tauxCC: 0.15
   weakness: 1
   resistance: 0
-  attackBar: 0
+  zoneOffensive: 0
   hasPlayed: 0
   capacite: 0

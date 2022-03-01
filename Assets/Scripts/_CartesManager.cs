@@ -10,6 +10,7 @@ public class _CartesManager : MonoBehaviour
 	public Sprite image;
 	public int cost;
 	public EnumPerso.types type;
+	public EnumPerso.categories category;
 	public EnumPerso.classes classe;
 	public EnumPerso.elements element;
 	public EnumPerso.rarities rarete;
@@ -73,6 +74,7 @@ public class _CartesManager : MonoBehaviour
 		image = carte.image;
 		cost = carte.cost;
 		type = carte.type;
+		category = carte.category;
 		classe = carte.classe;
 		element = carte.element;
 		rarete = carte.rarete;
@@ -128,7 +130,7 @@ public class _CartesManager : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			scriptSystem.Player_Attack(valeur1, cost, true, element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+			scriptSystem.Player_Attack(valeur1, cost, category, element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
 			if (played.childCount != 0)
 				Destroy(played.GetChild(0).gameObject);
 			transform.parent = played;

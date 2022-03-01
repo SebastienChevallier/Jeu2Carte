@@ -15,17 +15,17 @@ MonoBehaviour:
   _name: Dark Seb
   classe: 0
   race: 0
-  basePV: 370
-  actualPV: 370
+  basePV: 100
+  actualPV: 100
   baseMana: 30
   actualMana: 30
   attackBar: 0
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 10
-  attMag: 10
-  defPhys: 15
-  defMag: 15
+  attPhys: 31
+  attMag: 35
+  defPhys: 32
+  defMag: 31
   vitesse: 34
   tauxCC: 0.15
   weakness: 2

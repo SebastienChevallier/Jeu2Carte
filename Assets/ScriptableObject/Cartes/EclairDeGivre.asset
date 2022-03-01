@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Eclair de givre
   image: {fileID: 0}
-  cost: 5
+  cost: 20
   type: 0
-  classe: 2
+  category: 1
+  classe: 4
   element: 1
   rarete: 2
   effet1: 0

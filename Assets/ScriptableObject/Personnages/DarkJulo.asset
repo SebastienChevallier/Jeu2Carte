@@ -15,20 +15,21 @@ MonoBehaviour:
   _name: Dark Julo
   classe: 6
   race: 0
-  basePV: 450
-  actualPV: 450
+  basePV: 100
+  actualPV: 100
   baseMana: 20
   actualMana: 20
+  attackBar: 0
   fillAmountPV: 1
   fillAmountMana: 1
-  attPhys: 12
-  attMag: 7
-  defPhys: 8
-  defMag: 6
+  attPhys: 31
+  attMag: 31
+  defPhys: 31
+  defMag: 31
   vitesse: 30
   tauxCC: 0.2
   weakness: 1
   resistance: 0
-  attackBar: 0
+  zoneOffensive: 0
   hasPlayed: 0
   capacite: 0

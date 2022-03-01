@@ -8,8 +8,10 @@ public class SO_Cartes : ScriptableObject
 	[Header("Propriétés")]
 	public string _name;
 	public Sprite image;
+	[Range(0, 100)]
 	public int cost;
 	public EnumPerso.types type;
+	public EnumPerso.categories category;
 	public EnumPerso.classes classe;
 	public EnumPerso.elements element;
 	public EnumPerso.rarities rarete;

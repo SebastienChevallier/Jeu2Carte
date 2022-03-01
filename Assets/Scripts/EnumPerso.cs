@@ -49,4 +49,11 @@ public class EnumPerso : MonoBehaviour
         Rare,
         Légendaire,
     }
+
+    public enum categories
+    {
+        Physique,
+        Magique,
+        Aucune
+    }
 }
