@@ -51,9 +51,6 @@ public class _CartesManager : MonoBehaviour
 	//UI
 	private Vector3 savePos;
 
-	//Battle
-	static public _CartesManager cardPlayed;
-
 
 
 	void Start()
@@ -116,17 +113,15 @@ public class _CartesManager : MonoBehaviour
     private void OnMouseDrag()
 	{
 		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -carteCam.transform.position.z + savePos.z);
-
 		Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-		
 		transform.position = objPosition;		
 	}
 
 	private void OnMouseUp()
 	{
+		Transform played = GameObject.Find("PlayedCard").transform;
 		RaycastHit hit;
 		Ray ray = carteCam.ScreenPointToRay(Input.mousePosition);
-		Transform played = GameObject.Find("PlayedCard").transform;
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
@@ -134,11 +129,9 @@ public class _CartesManager : MonoBehaviour
 			if (played.childCount != 0)
 				Destroy(played.GetChild(0).gameObject);
 			transform.parent = played;
-			cardPlayed = transform.gameObject.GetComponent<_CartesManager>();
+			scriptSystem.card = transform.gameObject.GetComponent<_CartesManager>();
 		}
         else
-        {
 			transform.position = savePos;
-		}	
 	}
 }

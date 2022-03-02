@@ -33,6 +33,9 @@ public class _SystemManager : MonoBehaviour
     [HideInInspector]
     public _PersonnagesManager scriptPersoAttacker, scriptPersoTarget;
 
+    [Header("Battle")]
+    public _CartesManager card;
+
     //UI
     private Image pvBarAlly, manaBarAlly, pvBarEnemy, manaBarEnemy;
     private Image pvBarMin, pvBarMax, manaBarPrevisu;
@@ -49,8 +52,6 @@ public class _SystemManager : MonoBehaviour
 
     private float minDegats, maxDegats, actualDegats, cardCost;
 
-    public _CartesManager card;
-
 
 
     void Start()
@@ -63,7 +64,7 @@ public class _SystemManager : MonoBehaviour
         Get_HUD();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //UI
         Set_HUD();
@@ -141,7 +142,7 @@ public class _SystemManager : MonoBehaviour
 
         foreach (SO_Personnages perso in SO_team)
         {
-            var prefPerso = Instantiate(prefab_Perso, zoneAllyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneAllyDef);
+            var prefPerso = Instantiate(prefab_Perso, zoneAllyDef.GetChild(0).position + new Vector3(0, 1, distance), new Quaternion(0, 0, 0, 0), zoneAllyDef);
             prefPerso.transform.localRotation = Quaternion.Euler(0, 180, 0);
             if (perso.zoneOffensive)
                 prefPerso.transform.position += new Vector3(distanceBetweenZones, 0, 0);
@@ -166,7 +167,7 @@ public class _SystemManager : MonoBehaviour
 
         foreach (SO_Personnages enemy in SO_enemyTeam)
         {
-            var prefPerso = Instantiate(prefab_Perso, zoneEnemyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneEnemyDef);
+            var prefPerso = Instantiate(prefab_Perso, zoneEnemyDef.GetChild(0).position + new Vector3(0, 1, distance), new Quaternion(0, 0, 0, 0), zoneEnemyDef);
             prefPerso.transform.localRotation = Quaternion.Euler(0, 180, 0);
             if (enemy.zoneOffensive)
                 prefPerso.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
@@ -187,8 +188,6 @@ public class _SystemManager : MonoBehaviour
     {
         if (!playerPlaying && !enemyPlaying && !endOfBattle)
             Load_AttackBar();
-        else if (playerPlaying)
-            Get_PlayedCard();
         else if (enemyPlaying)
             Enemy_Attack(20, 2, EnumPerso.categories.Magique, EnumPerso.elements.Eau, scriptPersoTarget, scriptPersoAttacker);
     }
@@ -216,11 +215,6 @@ public class _SystemManager : MonoBehaviour
         }
     }
 
-    private void Get_PlayedCard()
-    {
-        card = _CartesManager.cardPlayed;
-    }
-
     private bool End_Of_Turn()
     {
         foreach (_PersonnagesManager perso in team)
@@ -232,7 +226,7 @@ public class _SystemManager : MonoBehaviour
         return true;
     }
 
-    private void Damage_Calculation(int power, EnumPerso.categories cat, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
+    public void Damage_Calculation(int power, EnumPerso.categories cat, EnumPerso.elements element, _PersonnagesManager attacker, _PersonnagesManager target)
     {
         float rand = Random.Range(minRand, maxRand);
         float checkCC = Random.Range(0.0f, 1.0f);
@@ -386,7 +380,7 @@ public class _SystemManager : MonoBehaviour
         }
     }
 
-    private void Load_Previsu()
+    public void Load_Previsu()
     {
         previsuMinPV = scriptPersoTarget.actualPV - Mathf.RoundToInt(minDegats);
         previsuMaxPV = scriptPersoTarget.actualPV - Mathf.RoundToInt(maxDegats);

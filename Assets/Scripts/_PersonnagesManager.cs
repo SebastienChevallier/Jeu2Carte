@@ -61,19 +61,6 @@ public class _PersonnagesManager : MonoBehaviour
         CreateCharacter(persoRef);
     }
 
-    void FixedUpdate()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                scriptSystem.scriptPersoAttacker = hit.transform.gameObject.GetComponent<_PersonnagesManager>();
-            }
-        }
-    }
-
     public void CreateCharacter(SO_Personnages personnage)
     {
 		_name = personnage._name;
@@ -105,5 +92,15 @@ public class _PersonnagesManager : MonoBehaviour
         hasPlayed = personnage.hasPlayed;
 
         capacite = personnage.capacite;	
+    }
+
+    private void OnMouseDown()
+    {
+        if (tag == "Enemy")
+        {
+            scriptSystem.scriptPersoTarget = transform.gameObject.GetComponent<_PersonnagesManager>();
+            scriptSystem.Damage_Calculation(scriptSystem.card.valeur1, scriptSystem.card.category, scriptSystem.card.element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+            scriptSystem.Load_Previsu();
+        }
     }
 }

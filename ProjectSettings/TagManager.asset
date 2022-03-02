@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PreviCarte
-  - Offensive
-  - Defensive
   - Ally
   - Enemy
+  - Defensive
+  - Offensive
   layers:
   - Default
   - TransparentFX
