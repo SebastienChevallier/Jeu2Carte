@@ -46,8 +46,9 @@ public class _PersonnagesManager : MonoBehaviour
     public EnumCapacites scriptCapacites;
 
     //Script
-    private _PersonnagesManager thisScript;
     private _SystemManager scriptSystem;
+
+    private Camera _camera;
 
 
 
@@ -55,12 +56,25 @@ public class _PersonnagesManager : MonoBehaviour
     {
 		scriptCapacites = GameObject.Find("GAMEMANAGER").GetComponent<EnumCapacites>();
         scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
-        thisScript = transform.gameObject.GetComponent<_PersonnagesManager>();
+        _camera = GameObject.Find("CameraCarte").GetComponent<Camera>();
 
         CreateCharacter(persoRef);
     }
 
-	public void CreateCharacter(SO_Personnages personnage)
+    void FixedUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                scriptSystem.scriptPersoAttacker = hit.transform.gameObject.GetComponent<_PersonnagesManager>();
+            }
+        }
+    }
+
+    public void CreateCharacter(SO_Personnages personnage)
     {
 		_name = personnage._name;
         classe = personnage.classe;
@@ -91,11 +105,5 @@ public class _PersonnagesManager : MonoBehaviour
         hasPlayed = personnage.hasPlayed;
 
         capacite = personnage.capacite;	
-    }
-
-    void OnMouseDown()
-    {
-        if (tag == "Enemy")
-            scriptSystem.scriptPersoTarget = thisScript;
     }
 }

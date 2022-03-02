@@ -54,6 +54,6 @@ public class EnumPerso : MonoBehaviour
     {
         Physique,
         Magique,
-        Aucune
+        Autre
     }
 }

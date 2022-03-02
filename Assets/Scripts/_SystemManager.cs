@@ -142,7 +142,7 @@ public class _SystemManager : MonoBehaviour
         foreach (SO_Personnages perso in SO_team)
         {
             var prefPerso = Instantiate(prefab_Perso, zoneAllyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneAllyDef);
-            prefPerso.transform.localRotation = Quaternion.Euler(0, 182, 0);
+            prefPerso.transform.localRotation = Quaternion.Euler(0, 180, 0);
             if (perso.zoneOffensive)
                 prefPerso.transform.position += new Vector3(distanceBetweenZones, 0, 0);
             if (perso.vitesse > persoStart)
@@ -167,7 +167,7 @@ public class _SystemManager : MonoBehaviour
         foreach (SO_Personnages enemy in SO_enemyTeam)
         {
             var prefPerso = Instantiate(prefab_Perso, zoneEnemyDef.GetChild(0).position + new Vector3(0, 0, distance), new Quaternion(0, 0, 0, 0), zoneEnemyDef);
-            prefPerso.transform.localRotation = Quaternion.Euler(0, 182, 0);
+            prefPerso.transform.localRotation = Quaternion.Euler(0, 180, 0);
             if (enemy.zoneOffensive)
                 prefPerso.transform.position -= new Vector3(distanceBetweenZones, 0, 0);
             if (enemy.vitesse > enemyStart)
@@ -177,6 +177,7 @@ public class _SystemManager : MonoBehaviour
             }
             distance += distInterPerso;
             prefPerso.GetComponent<_PersonnagesManager>().persoRef = enemy;
+            prefPerso.gameObject.tag = "Enemy";
             enemyTeam.Add(prefPerso.GetComponent<_PersonnagesManager>());
             everybody.Add(prefPerso.GetComponent<_PersonnagesManager>());
         }
