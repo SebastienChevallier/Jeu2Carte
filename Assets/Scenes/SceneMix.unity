@@ -1242,12 +1242,12 @@ MonoBehaviour:
   maxRand: 1.1
   weakness: 2
   resistance: 0.5
-  attackerOffensive: 1.1
-  attackerDefensive: 0.9
+  attackerOffensive: 1.2
+  attackerDefensive: 0.8
   targetOffensive: 1.2
   targetDefensive: 0.8
   attackBarLoadSpeed: 0.07
-  distanceBetweenZones: 5.3
+  basicAttackPower: 15
   prefab_Perso: {fileID: 5552048209232178221, guid: b57f9d32ed9d80b49b33c9369ae72d3a, type: 3}
   SO_team:
   - {fileID: 11400000, guid: 6a48a4621eaf1f840a482db866c23bba, type: 2}
@@ -2778,7 +2778,7 @@ GameObject:
   - component: {fileID: 596070504}
   - component: {fileID: 596070503}
   m_Layer: 7
-  m_Name: Mur
+  m_Name: MurPrevisu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6514,6 +6514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016a2a8733f02a64e84ddffe11ce2ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab_Cartes: {fileID: 7959125869004830556, guid: d310eb819093d2146b04a1bad6ec7bcb, type: 3}
   cartes:
   - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
   - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
@@ -6522,8 +6523,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24c50ca31dc37ac4f942f80400cc30ac, type: 2}
   - {fileID: 11400000, guid: 24c50ca31dc37ac4f942f80400cc30ac, type: 2}
   - {fileID: 11400000, guid: cdf7f344f91bb15428f2a62b9673a737, type: 2}
-  GO_Cartes: []
-  prefab_Cartes: {fileID: 7959125869004830556, guid: d310eb819093d2146b04a1bad6ec7bcb, type: 3}
+  deck: []
 --- !u!114 &1549569672
 MonoBehaviour:
   m_ObjectHideFlags: 0

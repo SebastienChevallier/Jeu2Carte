@@ -56,7 +56,6 @@ public class _CartesManager : MonoBehaviour
 	void Start()
     {
 		scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
-
 		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
 		carteCam = GameObject.Find("CameraCarte").GetComponent<Camera>();
 
@@ -125,11 +124,9 @@ public class _CartesManager : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			scriptSystem.Player_Attack(valeur1, cost, category, element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
-			if (played.childCount != 0)
-				Destroy(played.GetChild(0).gameObject);
 			transform.parent = played;
 			scriptSystem.card = transform.gameObject.GetComponent<_CartesManager>();
+			scriptSystem.Player_Attack(valeur1, cost, category, element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
 		}
         else
 			transform.position = savePos;

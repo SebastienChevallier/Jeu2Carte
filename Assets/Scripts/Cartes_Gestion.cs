@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Cartes_Gestion : MonoBehaviour
 {
-    public List<SO_Cartes> cartes;
-    public List<GameObject> GO_Cartes;
     public GameObject prefab_Cartes;
+
+    public List<SO_Cartes> cartes;
+    public List<GameObject> deck;
 
     private GameObject container;
     
@@ -33,7 +34,7 @@ public class Cartes_Gestion : MonoBehaviour
         float distIntercarte = distance / (cartes.Count +1);
         distance = distIntercarte;
 
-        foreach (GameObject card in GO_Cartes)
+        foreach (GameObject card in deck)
         {
             Destroy(card);
         }
@@ -44,7 +45,7 @@ public class Cartes_Gestion : MonoBehaviour
             prefCartes.transform.localRotation = Quaternion.Euler(0, 2, 0);
             distance += distIntercarte;
             prefCartes.GetComponent<_CartesManager>().carteRef = card;            
-            GO_Cartes.Add(prefCartes);
+            deck.Add(prefCartes);
         }
     }
 }

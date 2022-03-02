@@ -15,18 +15,18 @@ MonoBehaviour:
   _name: BRUTASSE
   classe: 1
   race: 5
-  basePV: 200
-  actualPV: 200
-  baseMana: 10
-  actualMana: 10
+  basePV: 1000
+  actualPV: 1000
+  baseMana: 0
+  actualMana: 0
   attackBar: 0
   fillAmountPV: 1
   fillAmountMana: 1
   attPhys: 50
-  attMag: 34
-  defPhys: 32
-  defMag: 35
-  vitesse: 32
+  attMag: 50
+  defPhys: 50
+  defMag: 50
+  vitesse: 50
   tauxCC: 0.15
   weakness: 2
   resistance: 1

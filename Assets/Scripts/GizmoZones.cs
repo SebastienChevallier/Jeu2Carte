@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class GizmoZones : MonoBehaviour
 {
-    private BoxCollider col;
-
     void OnDrawGizmos()
     {
-        col = transform.gameObject.GetComponent<BoxCollider>();
+        BoxCollider col = transform.gameObject.GetComponent<BoxCollider>();
         if (tag == "Offensive")
             Gizmos.color = Color.red;
         else if (tag == "Defensive")

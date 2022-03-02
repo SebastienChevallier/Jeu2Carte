@@ -15,8 +15,8 @@ MonoBehaviour:
   _name: KRATOSS
   classe: 2
   race: 0
-  basePV: 190
-  actualPV: 190
+  basePV: 1000
+  actualPV: 1
   baseMana: 70
   actualMana: 70
   attackBar: 0
