@@ -98,7 +98,6 @@ public class _PersonnagesManager : MonoBehaviour
             scriptSystem.scriptPersoTarget = transform.gameObject.GetComponent<_PersonnagesManager>();
             if (scriptSystem.cardPlayed)
             {
-                Debug.Log(scriptSystem.basicAttack);
                 if (scriptSystem.basicAttack)
                     scriptSystem.Damage_Calculation(scriptSystem.basicAttackPower, EnumPerso.categories.Physique, EnumPerso.elements.Aucun, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
                 else
