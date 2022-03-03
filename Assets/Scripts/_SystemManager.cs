@@ -38,7 +38,9 @@ public class _SystemManager : MonoBehaviour
     [HideInInspector]
     public _CartesManager card;
 
-    private bool cardPlayed = false, switching = false, basicAttack = false;
+    [HideInInspector]
+    public bool cardPlayed = false, basicAttack = false;
+    private bool switching = false;
     private bool playerPlaying = false, enemyPlaying = false;
     private bool endOfTurn = false, endOfBattle = false;
 
@@ -94,7 +96,7 @@ public class _SystemManager : MonoBehaviour
 
         foreach (SO_Personnages perso in SO_team)
         {
-            var prefPerso = Instantiate(prefab_Perso, zoneAllyDef.GetChild(0).position + new Vector3(0, 1, distance), new Quaternion(0, 0, 0, 0), zoneAllyDef);
+            var prefPerso = Instantiate(prefab_Perso, new Vector3(zoneAllyDef.position.x, zoneAllyDef.position.y, zoneAllyDef.position.z - (zoneAllyDef.GetComponent<BoxCollider>().size.z / 2)) + new Vector3(0, 1, distance), new Quaternion(0, 0, 0, 0), zoneAllyDef);
             prefPerso.transform.localRotation = Quaternion.Euler(0, 180, 0);
             if (perso.zoneOffensive)
                 prefPerso.transform.position += new Vector3(distanceBetweenZones, 0, 0);
@@ -119,7 +121,7 @@ public class _SystemManager : MonoBehaviour
 
         foreach (SO_Personnages enemy in SO_enemyTeam)
         {
-            var prefPerso = Instantiate(prefab_Perso, zoneEnemyDef.GetChild(0).position + new Vector3(0, 1, distance), new Quaternion(0, 0, 0, 0), zoneEnemyDef);
+            var prefPerso = Instantiate(prefab_Perso, new Vector3(zoneEnemyDef.position.x, zoneEnemyDef.position.y, zoneEnemyDef.position.z - (zoneEnemyDef.GetComponent<BoxCollider>().size.z / 2)) + new Vector3(0, 1, distance), new Quaternion(0, 0, 0, 0), zoneEnemyDef);
             prefPerso.transform.localRotation = Quaternion.Euler(0, 180, 0);
             if (enemy.zoneOffensive)
                 prefPerso.transform.position -= new Vector3(distanceBetweenZones, 0, 0);

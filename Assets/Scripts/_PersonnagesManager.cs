@@ -48,15 +48,12 @@ public class _PersonnagesManager : MonoBehaviour
     //Script
     private _SystemManager scriptSystem;
 
-    private Camera _camera;
-
 
 
     void Start()
     {
-		scriptCapacites = GameObject.Find("GAMEMANAGER").GetComponent<EnumCapacites>();
-        scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
-        _camera = GameObject.Find("CameraCarte").GetComponent<Camera>();
+		scriptCapacites = GameObject.Find("Systeme").GetComponent<EnumCapacites>();
+        scriptSystem = GameObject.Find("Systeme").GetComponent<_SystemManager>();
 
         CreateCharacter(persoRef);
     }
@@ -99,8 +96,15 @@ public class _PersonnagesManager : MonoBehaviour
         if (tag == "Enemy")
         {
             scriptSystem.scriptPersoTarget = transform.gameObject.GetComponent<_PersonnagesManager>();
-            scriptSystem.Damage_Calculation(scriptSystem.card.valeur1, scriptSystem.card.category, scriptSystem.card.element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
-            scriptSystem.Load_Previsu();
+            if (scriptSystem.cardPlayed)
+            {
+                Debug.Log(scriptSystem.basicAttack);
+                if (scriptSystem.basicAttack)
+                    scriptSystem.Damage_Calculation(scriptSystem.basicAttackPower, EnumPerso.categories.Physique, EnumPerso.elements.Aucun, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+                else
+                    scriptSystem.Damage_Calculation(scriptSystem.card.valeur1, scriptSystem.card.category, scriptSystem.card.element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+                scriptSystem.Load_Previsu();
+            }
         }
     }
 }

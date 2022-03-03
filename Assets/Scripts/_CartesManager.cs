@@ -55,8 +55,8 @@ public class _CartesManager : MonoBehaviour
 
 	void Start()
     {
-		scriptSystem = GameObject.Find("Canvas").GetComponent<_SystemManager>();
-		scriptEffet = GameObject.Find("GAMEMANAGER").GetComponent<EnumEffets>();
+		scriptSystem = GameObject.Find("Systeme").GetComponent<_SystemManager>();
+		scriptEffet = GameObject.Find("Systeme").GetComponent<EnumEffets>();
 		carteCam = GameObject.Find("CameraCarte").GetComponent<Camera>();
 
 		CreateCard(carteRef);
@@ -118,15 +118,15 @@ public class _CartesManager : MonoBehaviour
 
 	private void OnMouseUp()
 	{
-		Transform played = GameObject.Find("PlayedCard").transform;
 		RaycastHit hit;
 		Ray ray = carteCam.ScreenPointToRay(Input.mousePosition);
 
 		if (Physics.Raycast(ray, out hit, 100, layer))
 		{
-			transform.parent = played;
 			scriptSystem.card = transform.gameObject.GetComponent<_CartesManager>();
 			scriptSystem.Player_Attack(valeur1, cost, category, element, scriptSystem.scriptPersoAttacker, scriptSystem.scriptPersoTarget);
+			if (scriptSystem.basicAttack)
+				scriptSystem.basicAttack = false;
 		}
         else
 			transform.position = savePos;
